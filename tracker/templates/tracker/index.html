@@ -1,0 +1,9 @@
+{% if h_list %}
+    <ul>
+    {% for item in h_list %}
+        <li><a href="/homicide/{{ item.id }}">{{ item.street}} - {{item.date}} - {{item.gender }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No homicides are available.</p>
+{% endif %}
