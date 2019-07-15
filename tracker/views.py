@@ -14,7 +14,7 @@ def index(request):
 class HomicideListView(generic.ListView):
     model = Homicide
     template_name = 'tracker/index.html'
-    queryset = Homicide.objects.all()
+    queryset = Homicide.objects.all().order_by('-count')
     context_object_name = 'h_list'
 
 class HomicideDetailView(generic.DetailView):
