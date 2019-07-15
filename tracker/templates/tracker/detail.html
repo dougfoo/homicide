@@ -1,8 +1,15 @@
 <h1>{{ homicide.street }} Killing</h1>
 <ul>
-    <li>{{ homicide.street }}</li>
-    <li>{{ homicide.date }}</li>
-    <li>{{ homicide.gender }}</li>
-    <li>{{ homicide.time }}</li>
+    <li>Street: {{ homicide.street }}</li>
+    <li>Date: {{ homicide.date }}</li>
+    <li>Gender: {{ homicide.gender }}</li>
+    <li>Time: {{ homicide.time }}</li>
     <li>Linked Articles:</li>
+    <ul>
+    {% for a in homicide.get_articles %}
+        <li><a href='{{a.url}}'>{{ a.headline }}</a></a> - {{ a.url }}</li>
+    {% empty %}
+        <li>No Articles </li>
+    {% endfor %}
+</ul>
 </ul>

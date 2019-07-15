@@ -11,7 +11,13 @@ def index(request):
     return HttpResponse(template.render(context, request))
     # return render(request, 'tracker/index.html', context)
 
-class DetailView(generic.DetailView):
+class HomicideListView(generic.ListView):
+    model = Homicide
+    template_name = 'tracker/index.html'
+    queryset = Homicide.objects.all()
+    context_object_name = 'h_list'
+
+class HomicideDetailView(generic.DetailView):
     model = Homicide
     template_name = 'tracker/detail.html'
 

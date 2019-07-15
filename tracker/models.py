@@ -1,6 +1,12 @@
 from django.db import models
 
-# Create your models here.
+class Article(models.Model):
+    headline = models.CharField(max_length=250)
+    url = models.CharField(max_length=250)
+    sentiment = models.CharField(max_length=250, blank=True, default='NA')
+    def __str__(self):
+        return str(self.headline) + '->' + self.url
+
 class Homicide(models.Model):
     date = models.DateField()
     time = models.TimeField(blank=True, default='01:00')
@@ -9,9 +15,11 @@ class Homicide(models.Model):
     zipcode = models.CharField(max_length=5, blank=True, default='')
     gender = models.CharField(max_length=5, blank=True, default='M')
     age = models.IntegerField(blank=True, default=0)
+    articles = models.ManyToManyField(Article, blank=True)
 
-class Article(models.Model):
-    headline = models.CharField(max_length=250)
-    homicide = models.ManyToManyField(Homicide)
+    def get_articles(self):
+        return self.articles.all()
 
+    def __str__(self):
+        return str(self.date) + ' ' + self.street + ', Articles: ' + str(self.articles)
 

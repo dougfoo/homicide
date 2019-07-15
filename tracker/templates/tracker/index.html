@@ -1,8 +1,8 @@
 <h1>Homicide List - 2019 in Charlotte</h1>
 
-{% if h_list %}
+{% if h_list  %}
     <ul>
-    {% for item in h_list %}
+    {% for item in h_list  %}
         <li>{{item.id}} <a href="/homicide/{{ item.id }}">{{ item.street}} - {{item.date}} - {{item.gender }}</a></li>
     {% endfor %}
     </ul>
