@@ -23,4 +23,4 @@ class HomicideDetailView(generic.DetailView):
 
 def article(request, homicide_id):
     article = get_object_or_404(Article, pk=homicide_id)
-    return render(request, 'tracker/article.html', {'article': article})
+    return render(request, 'tracker/detail.html', {'article': article})

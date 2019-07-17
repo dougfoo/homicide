@@ -1,0 +1,36 @@
+
+#homicides {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#homicides td, #homicides th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#homicides tr:nth-child(even){background-color: #f2f2f2;}
+
+#homicides tr:hover {background-color: #ddd;}
+
+#homicides th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#articles th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #DCAF50;
+    color: white;
+}
+
+#articles td, #articles th {
+    border: 1px solid #DCAF50;
+    padding: 8px;
+}
