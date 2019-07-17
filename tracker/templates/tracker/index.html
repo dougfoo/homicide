@@ -1,7 +1,29 @@
 <html>
     <head>
-        {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'tracker/styles.css' %}">
+        <style>
+        #homicides {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #homicides td, #homicides th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #homicides tr:nth-child(even){background-color: #f2f2f2;}
+
+        #homicides tr:hover {background-color: #ddd;}
+
+        #homicides th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+        </style>
     </head>
     <body>
         <h1>Homicide List - 2019 in Charlotte</h1>

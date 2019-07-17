@@ -1,39 +1,15 @@
-<html>
-    <head>
-        {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'tracker/styles.css' %}">
-    </head>
-    <body>
-        <h1>{{ homicide.street }} Killing</h1>
-
-        <table id='homicides' class='homicides'>
-            <tr>
-                <th>Street:</th><td> {{ homicide.street }}</td>
-            </tr>
-            <tr>
-                <th>Date:</th><td> {{ homicide.date }}</td>
-            </tr>
-            <tr>
-                <th>Gender:</th><td> {{ homicide.gender }}</td>
-            </tr>
-            <tr>
-                <th>Time:</th><td> {{ homicide.time }}</td>
-            </tr>
-            <tr>
-                <th>Linked Articles:
-                    <td>
-                        <table id='articles' class='articles'>
-                            {% for a in homicide.get_articles %}
-                            <tr>
-                                <th><a href='{{a.url}}'>{{ a.headline }}</a></th><td>{{ a.url }}</td>
-                            {% empty %}
-                                <th></th><td>No Articles </td>
-                            {% endfor %}
-                            </tr>
-                        </table>
-                    </td>
-                </th>
-            </tr>
-        </table>            
-    </body>
-</html>
+<h1>{{ homicide.street }} Killing</h1>
+<ul>
+    <li>Street: {{ homicide.street }}</li>
+    <li>Date: {{ homicide.date }}</li>
+    <li>Gender: {{ homicide.gender }}</li>
+    <li>Time: {{ homicide.time }}</li>
+    <li>Linked Articles:</li>
+    <ul>
+    {% for a in homicide.get_articles %}
+        <li><a href='{{a.url}}'>{{ a.headline }}</a></a> - {{ a.url }}</li>
+    {% empty %}
+        <li>No Articles </li>
+    {% endfor %}
+</ul>
+</ul>
