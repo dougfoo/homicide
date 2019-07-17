@@ -1,11 +1,60 @@
-<h1>Homicide List - 2019 in Charlotte</h1>
+<html>
+    <head>
+        <style>
+        #homicides {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-{% if h_list  %}
-    <ul>
-    {% for item in h_list  %}
-        <li>{{item.count}} <a href="/homicide/{{ item.id }}">{{ item.street}} - {{item.date}} - {{item.gender }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No homicides are available.</p>
-{% endif %}
+        #homicides td, #homicides th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #homicides tr:nth-child(even){background-color: #f2f2f2;}
+
+        #homicides tr:hover {background-color: #ddd;}
+
+        #homicides th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>Homicide List - 2019 in Charlotte</h1>
+
+        <div class='content'>
+            <table id='homicides' class='h_table'>
+                <tr class='h_row'>
+                    <th class='h_header'>ID</th>
+                    <th class='h_header'>Count</th>
+                    <th class='h_header'>Date</th>
+                    <th class='h_header'>Heading</th>
+                    <th class='h_header'>Gender</th>
+                    <th class='h_header'>Street</th>
+                </tr>
+                {% if h_list %}
+                    {% for item in h_list %}
+                        <tr class='h_row'>
+                            <td class='h_td'> {{item.id}}</td>
+                            <td class='h_td'> {{item.count}}</td>
+                            <td class='h_td'> {{item.date}}</td>
+                            <td class='h_td'><a href="/homicide/{{ item.id }}">{{ item.street}} - {{item.date}} - {{item.gender }}</a> </td>
+                            <td class='h_td'> {{item.gender}}</td>
+                            <td class='h_td'> {{item.street}}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                        <tr class='h_row'>
+                            <p>No homicides are available.</p>            
+                        </tr>
+                {% endif %}
+            </table>
+        </div>
+    </body>
+</html>
