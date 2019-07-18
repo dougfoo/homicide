@@ -82,13 +82,12 @@ DATABASES = {
 }
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'clthomicide',
-#         'USER': 'mydatabaseuser',
-#         'PASSWORD': 'mypassword',
-#         'HOST': '35.231.99.79',
+#         'ENGINE': 'django.db.backends.mysql',
+#         'USER': 'homicide_user',
+#         'PASSWORD': 'homicide_user',
+#         'HOST': 'localhost',
 #         'PORT': '3306',
-#         'NAME': 'pootracker1:us-east1:clthomicide',
+#         'NAME': 'homicide_3',
 #     }
 # }
 
