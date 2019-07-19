@@ -121,22 +121,22 @@
                                     <th>Date:</th><td> {{ homicide.date }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Gender:</th><td> {{ homicide.gender }}</td>
+                                    <th>Gender:</th><td> {{ homicide.get_gender_display }}</td>
                                 </tr>
                                 <tr>
                                     <th>Time:</th><td> {{ homicide.time }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Means:</th><td> {{ homicide.means }}</td>
+                                    <th>Means:</th><td> {{ homicide.get_means_display }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Reason:</th><td> {{ homicide.motive }}</td>
+                                    <th>Reason:</th><td> {{ homicide.get_motive_display }}</td>
                                 </tr>
                                 </tr>
                                     <th>Name:</th><td> {{ homicide.name }}</td>
                                 </tr>
                                 </tr>
-                                    <th>Case Solved:</th><td> {{ homicide.solved }}</td>
+                                    <th>Case Solved:</th><td> {{ homicide.get_solved_display }}</td>
                                 </tr>                    
                             </table>
                         </td>
