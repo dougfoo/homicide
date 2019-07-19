@@ -15,3 +15,8 @@ def detail(request, homicide_id):
     h_list = Homicide.objects.all().order_by('-count')
     return render(request, 'tracker/detail.html', {'h_list': h_list, 'homicide': homicide })
 
+class ArticleListView(generic.ListView):
+    model = Article
+    template_name = 'tracker/article.html'
+    queryset = Article.objects.all()
+    context_object_name = 'h_list'

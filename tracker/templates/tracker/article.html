@@ -1,5 +1,7 @@
-<h1>Related Articles</h1>
+<h1>Articles to Homicides</h1>
 <ul>
-    <li><a href="{{ article.url }}">{{ article.headline }}</a></li>
-    <li>{{ article.sentiment }}></li>
+    {% for a in h_list %}
+        <li><a target=_blank href='{{a.url}}'>{{ a.headline }}</a> - {{ a.url }}</li>
+    {% empty %}
+    {% endfor %}
 </ul>
