@@ -17,6 +17,7 @@ class Homicide(models.Model):
     street = models.CharField(max_length=80, blank=True, default='')
     intersection = models.CharField(max_length=120, blank=True, default='')
     maplink = models.CharField(max_length=180, blank=True, default='')
+    mapiframe = models.TextField(blank=True, default='')
     zipcode = models.CharField(max_length=5, blank=True, default='')
     gender = models.CharField(max_length=1, choices=GENDERS, default='M')
     age = models.IntegerField(blank=True, default=0)
