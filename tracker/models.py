@@ -10,7 +10,7 @@ class Article(models.Model):
 class Homicide(models.Model):
     GENDERS = (        ('F', 'Female'),('M', 'Male'),('O', 'Other or Unknown'),    )
     MOTIVES = (        ('D', 'Dispute'),('G', 'Gang'),('F', 'Family/Domestic'), ('O', 'Other or Unknown'),    )
-    METHODS = (        ('S', 'Stabbing'),('G', 'Gun'),('O', 'Other or Unknown'),    )
+    MEANS = (        ('S', 'Stabbing'),('G', 'Gun'),('O', 'Other or Unknown'),    )
  
     date = models.DateField()
     time = models.TimeField(blank=True, default='01:00')
@@ -23,7 +23,7 @@ class Homicide(models.Model):
     age = models.IntegerField(blank=True, default=0)
     name = models.CharField(max_length=80, blank=True, default='')
     motive = models.CharField(max_length=1, choices=MOTIVES, default='O')
-    method = models.CharField(max_length=1, choices=METHODS, default='O')
+    means = models.CharField(max_length=1, choices=MEANS, default='O')
     solved = models.CharField(max_length=1, choices=[('Y','N')], default='N')
     count = models.IntegerField(blank=True, default=0)
     articles = models.ManyToManyField(Article, blank=True)
