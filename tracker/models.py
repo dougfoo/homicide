@@ -23,6 +23,7 @@ class Homicide(models.Model):
     name = models.CharField(max_length=80, blank=True, default='')
     motive = models.CharField(max_length=1, choices=MOTIVES, default='O')
     method = models.CharField(max_length=1, choices=METHODS, default='O')
+    solved = models.CharField(max_length=1, choices=[('Y','N')], default='N')
     count = models.IntegerField(blank=True, default=0)
     articles = models.ManyToManyField(Article, blank=True)
 
