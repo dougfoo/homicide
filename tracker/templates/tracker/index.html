@@ -23,12 +23,23 @@
             background-color: #4CAF50;
             color: white;
         }
+        #articles th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #DCAF50;
+            color: white;
+        }
+        #articles td, #articles th {
+            border: 1px solid #DCAF50;
+            padding: 8px;
+        }
         </style>
     </head>
     <body>
         <h1>Homicide List - 2019 in Charlotte</h1>
 
-        <div class='content'>
+        <div class='listview'>
             <table id='homicides' class='h_table'>
                 <tr class='h_row'>
                     <th class='h_header'>ID</th>
@@ -55,6 +66,39 @@
                         </tr>
                 {% endif %}
             </table>
+        </div>
+        <div style="width:100%; height: 20px; background-color: whitesmoke;">
+        </div>
+        <div style="border: 30px solid whitesmoke" class='detailview'>
+            <table id='homicide_detail' class='homicides'>
+                <tr>
+                    <th>Street:</th><td> {{ homicide.street }}</td>
+                </tr>
+                <tr>
+                    <th>Date:</th><td> {{ homicide.date }}</td>
+                </tr>
+                <tr>
+                    <th>Gender:</th><td> {{ homicide.gender }}</td>
+                </tr>
+                <tr>
+                    <th>Time:</th><td> {{ homicide.time }}</td>
+                </tr>
+                <tr>
+                    <th>Linked Articles:
+                        <td>
+                            <table id='articles' class='articles'>
+                                {% for a in homicide.get_articles %}
+                                <tr>
+                                    <th><a href='{{a.url}}'>{{ a.headline }}</a></th><td>{{ a.url }}</td>
+                                {% empty %}
+                                    <th></th><td>No Articles </td>
+                                {% endfor %}
+                                </tr>
+                            </table>
+                        </td>
+                    </th>
+                </tr>
+            </table>            
         </div>
     </body>
 </html>

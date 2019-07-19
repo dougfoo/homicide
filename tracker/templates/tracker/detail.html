@@ -1,72 +1,126 @@
 <html>
     <head>
         <style>
-            #homicides {
-                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-    
-            #homicides td, #homicides th {
-                border: 1px solid #ddd;
-                padding: 8px;
-            }
-    
-            #homicides tr:nth-child(even){background-color: #f2f2f2;}
-    
-            #homicides tr:hover {background-color: #ddd;}
-    
-            #homicides th {
-                padding-top: 12px;
-                padding-bottom: 12px;
-                text-align: left;
-                background-color: #4CAF50;
-                color: white;
-            }
-            #articles th {
-                padding-top: 12px;
-                padding-bottom: 12px;
-                text-align: left;
-                background-color: #DCAF50;
-                color: white;
-            }
-            #articles td, #articles th {
-                border: 1px solid #DCAF50;
-                padding: 8px;
-            }
+        #homicides {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #homicides td, #homicides th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #homicides tr:nth-child(even){background-color: #f2f2f2;}
+
+        #homicides tr:hover {background-color: #ddd;}
+
+        #homicides th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+        #articles th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: lightgoldenrodyellow;
+            color: white;
+        }
+        #articles td, #articles th {
+            border: 1px solid tan;
+            padding: 8px;
+        }
         </style>
     </head>
     <body>
-        <h1>{{ homicide.street }} Killing</h1>
+        <h1>Homicide List - 2019 in Charlotte</h1>
 
-        <table id='homicides' class='homicides'>
-            <tr>
-                <th>Street:</th><td> {{ homicide.street }}</td>
-            </tr>
-            <tr>
-                <th>Date:</th><td> {{ homicide.date }}</td>
-            </tr>
-            <tr>
-                <th>Gender:</th><td> {{ homicide.gender }}</td>
-            </tr>
-            <tr>
-                <th>Time:</th><td> {{ homicide.time }}</td>
-            </tr>
-            <tr>
-                <th>Linked Articles:
-                    <td>
-                        <table id='articles' class='articles'>
-                            {% for a in homicide.get_articles %}
-                            <tr>
-                                <th><a href='{{a.url}}'>{{ a.headline }}</a></th><td>{{ a.url }}</td>
-                            {% empty %}
-                                <th></th><td>No Articles </td>
-                            {% endfor %}
-                            </tr>
-                        </table>
-                    </td>
-                </th>
-            </tr>
-        </table>            
+        <div class='listview'>
+            <table id='homicides' class='h_table'>
+                <tr class='h_row'>
+                    <th class='h_header'>Seq</th>
+                    <th class='h_header'>Date</th>
+                    <th class='h_header'>Heading</th>
+                    <th class='h_header'>Gender</th>
+                    <th class='h_header'>Street</th>
+                </tr>
+                {% if h_list %}
+                    {% for item in h_list %}
+                        <tr class='h_row'>
+                            <td class='h_td'> {{item.count}}</td>
+                            <td class='h_td'> {{item.date}}</td>
+                            <td class='h_td'><a href="/homicide/{{ item.id }}">{{ item.street}} - {{item.date}} - {{item.gender }}</a> </td>
+                            <td class='h_td'> {{item.gender}}</td>
+                            <td class='h_td'> {{item.street}}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                        <tr class='h_row'>
+                            <p>No homicides are available.</p>            
+                        </tr>
+                {% endif %}
+            </table>
+        </div>
+        <div style="width:100%; height: 20px; background-color: whitesmoke;">
+        </div>
+        {% if homicide %}
+        <div style="border: 30px solid whitesmoke" class='detailview'>
+            <table id='homicide_detail' class='homicides'>
+                <tr>
+                    <th>Street:</th><td> {{ homicide.street }}</td>
+                </tr>
+                <tr>
+                    <th>Intersection:</th><td> {{ homicide.intersection }}</td>
+                </tr>
+                <tr>
+                    <th>Map Link:</th><td> <a target=_blank href="{{ homicide.maplink }}"</a>gmap</a></td>
+                </tr>
+                <tr>
+                    <th>Zipcode:</th><td> {{ homicide.zipcode }}</td>
+                </tr>
+                <tr>
+                    <th>Date:</th><td> {{ homicide.date }}</td>
+                </tr>
+                <tr>
+                    <th>Gender:</th><td> {{ homicide.gender }}</td>
+                </tr>
+                <tr>
+                    <th>Time:</th><td> {{ homicide.time }}</td>
+                </tr>
+                <tr>
+                    <th>Method:</th><td> {{ homicide.method }}</td>
+                </tr>
+                <tr>
+                    <th>Motive:</th><td> {{ homicide.means}}</td>
+                </tr>
+                <tr>
+                <tr>
+                    <th>Reason:</th><td> {{ homicide.reason }}</td>
+                </tr>
+                    <th>Name:</th><td> {{ homicide.name }}</td>
+                </tr>
+                <tr>
+                    <th>Linked Articles:
+                        <td>
+                            <table id='articles' class='articles'>
+                                {% for a in homicide.get_articles %}
+                                <tr>
+                                    <th><a target=_blank href='{{a.url}}'>{{ a.headline }}</a></th><td>{{ a.url }}</td>
+                                {% empty %}
+                                    <th></th><td>No Articles </td>
+                                {% endfor %}
+                                </tr>
+                            </table>
+                        </td>
+                    </th>
+                </tr>
+            </table>            
+        </div>
+        {% else %}
+        {% endif %}
     </body>
 </html>
