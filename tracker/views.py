@@ -20,3 +20,9 @@ class ArticleListView(generic.ListView):
     template_name = 'tracker/article.html'
     queryset = Article.objects.all()
     context_object_name = 'h_list'
+
+class MapView(generic.ListView):
+    model = Homicide
+    template_name = 'tracker/map.html'
+    queryset = Homicide.objects.all().order_by('-count')
+    context_object_name = 'h_list'
