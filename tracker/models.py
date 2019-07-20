@@ -1,8 +1,9 @@
 from django.db import models
 
 class Article(models.Model):
-    headline = models.CharField(max_length=250)
     url = models.CharField(max_length=250)
+    headline = models.CharField(max_length=250)
+    content = models.TextField(blank=True, default='')
     sentiment = models.CharField(max_length=250, blank=True, default='NA')
     def __str__(self):
         return str(self.headline) + '->' + self.url
@@ -34,7 +35,7 @@ class Homicide(models.Model):
     killerage = models.IntegerField(blank=True, default=0)
     killername = models.CharField(max_length=80, blank=True, default='')
     killerethnicity = models.CharField(max_length=1, choices=ETHNICITIES, default='U')
-    location = models.CharField(max_length=1, choices=LOCATIONS, default='U')
+    location = models.CharField(max_length=1, choices=LOCATIONS, default='O')
     articles = models.ManyToManyField(Article, blank=True)
 
     def get_articles(self):
