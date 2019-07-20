@@ -13,7 +13,8 @@ class Homicide(models.Model):
     MEANS = (        ('S', 'Stabbing'),('G', 'Gun'),('O', 'Other or Unknown'),    )
     SOLVED = (('S','Solved'),('U','Unsolved'),)
     ETHNICITIES = (('A','Asian'),('W','White'),('B','Black'),('H','Hispanic'),('O','Other'),('U','Unknown'), )
- 
+    LOCATIONS = (        ('H', 'Home'),('C', 'Car'),('S', 'Street'),('O','Other/Unknown'),    )
+
     date = models.DateField()
     time = models.TimeField(blank=True, default='01:00')
     street = models.CharField(max_length=80, blank=True, default='')
@@ -24,15 +25,16 @@ class Homicide(models.Model):
     gender = models.CharField(max_length=1, choices=GENDERS, default='M')
     age = models.IntegerField(blank=True, default=0)
     name = models.CharField(max_length=80, blank=True, default='')
-    ethnicity = models.CharField(max_length=80, choices=ETHNICITIES, default='U')
+    ethnicity = models.CharField(max_length=1, choices=ETHNICITIES, default='U')
     motive = models.CharField(max_length=1, choices=MOTIVES, default='O')
     means = models.CharField(max_length=1, choices=MEANS, default='O')
-    solved = models.CharField(max_length=1, choices=SOLVED, default='N')
+    solved = models.CharField(max_length=1, choices=SOLVED, default='U')
     count = models.IntegerField(blank=True, default=0)
     killergender = models.CharField(max_length=1, choices=GENDERS, default='U')
     killerage = models.IntegerField(blank=True, default=0)
     killername = models.CharField(max_length=80, blank=True, default='')
-    killerethnicity = models.CharField(max_length=80, choices=ETHNICITIES, default='U')
+    killerethnicity = models.CharField(max_length=1, choices=ETHNICITIES, default='U')
+    location = models.CharField(max_length=1, choices=LOCATIONS, default='U')
     articles = models.ManyToManyField(Article, blank=True)
 
     def get_articles(self):

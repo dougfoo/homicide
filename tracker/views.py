@@ -12,7 +12,7 @@ class HomicideListView(generic.ListView):
 
 def detail(request, homicide_id):
     homicide = get_object_or_404(Homicide, pk=homicide_id)
-    h_list = Homicide.objects.all().order_by('-count')
+    h_list = Homicide.objects.all().order_by('-date')
     return render(request, 'tracker/detail.html', {'h_list': h_list, 'homicide': homicide })
 
 class ArticleListView(generic.ListView):
