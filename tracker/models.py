@@ -8,7 +8,7 @@ class Article(models.Model):
         return str(self.headline) + '->' + self.url
 
 class Homicide(models.Model):
-    GENDERS = (        ('F', 'Female'),('M', 'Male'),('O', 'Other or Unknown'),    )
+    GENDERS = (        ('F', 'Female'),('M', 'Male'),('U', 'Other or Unknown'),    )
     MOTIVES = (        ('D', 'Dispute'),('G', 'Gang'),('F', 'Family/Domestic'), ('O', 'Other or Unknown'),    )
     MEANS = (        ('S', 'Stabbing'),('G', 'Gun'),('O', 'Other or Unknown'),    )
     SOLVED = (('S','Solved'),('U','Unsolved'),)
@@ -29,10 +29,10 @@ class Homicide(models.Model):
     means = models.CharField(max_length=1, choices=MEANS, default='O')
     solved = models.CharField(max_length=1, choices=SOLVED, default='N')
     count = models.IntegerField(blank=True, default=0)
-    killer_gender = models.CharField(max_length=1, choices=GENDERS, default='M')
-    killer_age = models.IntegerField(blank=True, default=0)
-    killer_name = models.CharField(max_length=80, blank=True, default='')
-    killer_ethnicity = models.CharField(max_length=80, choices=ETHNICITIES, default='U')
+    killergender = models.CharField(max_length=1, choices=GENDERS, default='U')
+    killerage = models.IntegerField(blank=True, default=0)
+    killername = models.CharField(max_length=80, blank=True, default='')
+    killerethnicity = models.CharField(max_length=80, choices=ETHNICITIES, default='U')
     articles = models.ManyToManyField(Article, blank=True)
 
     def get_articles(self):
