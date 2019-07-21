@@ -24,6 +24,8 @@ SECRET_KEY = '_qq_plf-nu*mmwms!vw-r2o2xd)r$$4&(y%$$vhb&*plhs$q+q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+
+# SSL redirect not working right on Azure....  False causes loop
 SECURE_SSL_REDIRECT = False
 
 ALLOWED_HOSTS = ['*']
