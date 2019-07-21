@@ -4,6 +4,11 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
         <title>Charlotte Homicide Map</title>
         <style>
+            .homicidepage {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
             .tooltip {
                 position: relative;
                 display: inline-block;
@@ -87,27 +92,29 @@
         </script>                
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyBN-SLv7YPAMARDo2eQl7Y_yyy84xpWcHU"></script>
     </head>
-    <body style="margin:10px; padding:10px;" onload="initialize()">
-        <div>
-            Homicide Map
-        </div>
-        <div class='menu' style="text-align: center">
+    <body onload="initialize()">
+        <div class='homicidepage'>
+
+            <h1 style="text-align: center; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    Homicide: Life on the Street in Charlotte - 2019</h1>
+            <div class='menu' style="text-align: center">
                 [ <div class='tooltip'>
                     <a href="/homicide">Home</a>
                     <span class='tooltiptext'>Homepage</span>
                 </div> | 
                 <div class='tooltip'>
-                  <span style="color: rgba(137, 144, 150, 0.699)">Analytics</span> 
-                  <span class='tooltiptext'>Coming Soon</span>
-                </div> | 
+                        <a href="/chart">Analytics/Charts</a>
+                        <span class='tooltiptext'>Analytics/Charts</span>
+                    </div> | 
                 <div class='tooltip'>
                     <span style="color: rgba(137, 144, 150, 0.699)">Maps</span> 
                 </div> ]
             </div>
 
-        <div id="map_canvas" style="width:90%; height:90%"></div>
-        <div>
-            Map Legend & Controls coming
+            <div id="map_canvas" style="width:90%; height:90%"></div>
+            <div>
+                Map Legend & Controls coming
+            </div>
         </div>
     </body>           
 </html>

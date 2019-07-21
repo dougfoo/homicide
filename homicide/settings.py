@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+## consider turning off SSL entirely ?
+# SECURE_SSL_REDIRECT = True
 
 # Application definition
 

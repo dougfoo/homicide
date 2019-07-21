@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+        .homicidepage {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@3"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
+        <title>Homicide Analytics</title>
+    </head>
+    <body>
+        <div class='homicidepage'>
+            <h1 style="text-align: center; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    Homicide: Life on the Street in Charlotte - 2019</h1>    
+            <div class='menu' style="text-align: center">
+            [ <div class='tooltip'>
+                    <a href="/homicide">Home</a>
+                    <span class='tooltiptext'>Homepage</span>
+                </div> | 
+                <div class='tooltip'>
+                    <a href="/chart">Analytics/Charts</a>
+                    <span class='tooltiptext'>Analytics/Charts</span>
+                </div> | 
+                <div class='tooltip'>
+                    <a href="/map">Maps</a>
+                    <span class='tooltiptext'>View Map of all Homicides</span>
+                </div> ]
+            </div>
+
+            <P></P>
+
+            <div id="viz">
+            </div>
+
+            <script type="text/javascript">
+                var spec = "{% url 'chart_obj' %}";
+                // transform the vega spec from altair as JSON,
+                // and render our cool viz on the page
+                vegaEmbed('#viz', spec)
+            </script>
+        </div>
+    </body>
+</html>
