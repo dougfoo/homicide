@@ -13,4 +13,4 @@ Longer term
    - Link to Mecklenberg county
    - Link to maps
    - Add article text analysis
-   
+   - Data analysis / visualization    
