@@ -9,11 +9,11 @@ class Article(models.Model):
         return str(self.headline) + '->' + self.url
 
 class Homicide(models.Model):
-    GENDERS = (        ('F', 'Female'),('M', 'Male'),('U', 'Other or Unknown'),    )
-    MOTIVES = (        ('D', 'Dispute'),('G', 'Gang'),('F', 'Family/Domestic'), ('O', 'Other or Unknown'),    )
+    GENDERS = (        ('F', 'Female'),('M', 'Male'),('O', 'Other or Unknown'),    )
+    MOTIVES = (        ('D', 'Dispute'),('G', 'Gang'),('F', 'Family/Domestic'), ('R','Robbery'),('O', 'Other or Unknown'),    )
     MEANS = (        ('S', 'Stabbing'),('G', 'Gun'),('O', 'Other or Unknown'),    )
     SOLVED = (('S','Solved'),('U','Unsolved'),)
-    ETHNICITIES = (('A','Asian'),('W','White'),('B','Black'),('H','Hispanic'),('O','Other'),('U','Unknown'), )
+    ETHNICITIES = (('A','Asian'),('W','White'),('B','Black'),('H','Hispanic'),('O','Other or Unknown'), )
     LOCATIONS = (        ('H', 'Home'),('C', 'Car'),('S', 'Street'),('O','Other/Unknown'),    )
 
     date = models.DateField()
@@ -22,18 +22,18 @@ class Homicide(models.Model):
     intersection = models.CharField(max_length=120, blank=True, default='')
     mapiframe = models.TextField(blank=True, default='')
     zipcode = models.CharField(max_length=5, blank=True, default='')
-    gender = models.CharField(max_length=1, choices=GENDERS, default='M')
+    gender = models.CharField(max_length=1, choices=GENDERS, default='O')
     age = models.IntegerField(blank=True, default=0)
     name = models.CharField(max_length=80, blank=True, default='')
-    ethnicity = models.CharField(max_length=1, choices=ETHNICITIES, default='U')
+    ethnicity = models.CharField(max_length=1, choices=ETHNICITIES, default='O')
     motive = models.CharField(max_length=1, choices=MOTIVES, default='O')
     means = models.CharField(max_length=1, choices=MEANS, default='O')
     solved = models.CharField(max_length=1, choices=SOLVED, default='U')
     count = models.IntegerField(blank=True, default=0)
-    killergender = models.CharField(max_length=1, choices=GENDERS, default='U')
+    killergender = models.CharField(max_length=1, choices=GENDERS, default='O')
     killerage = models.IntegerField(blank=True, default=0)
     killername = models.CharField(max_length=80, blank=True, default='')
-    killerethnicity = models.CharField(max_length=1, choices=ETHNICITIES, default='U')
+    killerethnicity = models.CharField(max_length=1, choices=ETHNICITIES, default='O')
     location = models.CharField(max_length=1, choices=LOCATIONS, default='O')
     articles = models.ManyToManyField(Article, blank=True)
 
