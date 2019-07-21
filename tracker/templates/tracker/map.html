@@ -69,6 +69,7 @@
                                     var marker = new google.maps.Marker({
                                         position: results[0].geometry.location,
                                         map: map,
+                                        icon: 'https://homicidestorage.z13.web.core.windows.net/icons8-skull-crossbones-48.png',
                                         title: results[0].formatted_address,
                                     });
                                     var infowindow = new google.maps.InfoWindow({
@@ -76,7 +77,7 @@
                                         size: new google.maps.Size(150, 50)
                                     });
                                     marker.addListener('click', function() {
-                                        map.setZoom(9);
+                                        map.setZoom(14);
                                         map.setCenter(marker.getPosition());
                                         infowindow.open(map, marker);
                                     });
