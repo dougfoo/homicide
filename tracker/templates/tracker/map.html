@@ -39,7 +39,6 @@
             {% endif %}
 
             function initialize() {
-                var geocodes = [];
                 geocoder = new google.maps.Geocoder();
                 var latlng = new google.maps.LatLng(35.2251855,-80.8415298);
                 var myOptions = {
@@ -54,7 +53,6 @@
                 };
                         
                 map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-
                 for (i in addresses) { 
                     console.log('addrs:', addresses[i]);
                     geocoder.geocode({
@@ -66,10 +64,10 @@
                                     var marker = new google.maps.Marker({
                                         position: results[0].geometry.location,
                                         map: map,
-                                        title: addresses[i],
+                                        title: results[0].formatted_address,
                                     });
                                     var infowindow = new google.maps.InfoWindow({
-                                        content: addresses[i],
+                                        content: results[0].formatted_address,
                                         size: new google.maps.Size(150, 50)
                                     });
                                     marker.addListener('click', function() {
