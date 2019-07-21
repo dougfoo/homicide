@@ -34,11 +34,11 @@ def chart_obj(request):
     data = alt.Data(values=list(h_list))
 #    print('\n\n**data',type(data), str(data))
     chart = alt.Chart(data).mark_point().encode(
-        x='age:Q',
-        y='date:T',
+        x='date:T',
+        y='age:Q',
         color='gender:N',
     )
-    print('\n\n**chart',type(chart), str(chart))
+#    print('\n\n**chart',type(chart), str(chart))
     return JsonResponse(chart.to_dict(), safe=False)
 
 def chart(request):
