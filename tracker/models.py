@@ -20,7 +20,6 @@ class Homicide(models.Model):
     time = models.TimeField(blank=True, default='01:00')
     street = models.CharField(max_length=80, blank=True, default='')
     intersection = models.CharField(max_length=120, blank=True, default='')
-    maplink = models.CharField(max_length=180, blank=True, default='')
     mapiframe = models.TextField(blank=True, default='')
     zipcode = models.CharField(max_length=5, blank=True, default='')
     gender = models.CharField(max_length=1, choices=GENDERS, default='M')
