@@ -1,4 +1,5 @@
 settings.py
 homicide/settings.py
+homicide/devsettings.py
 *.pyc
 **/*.pyc

@@ -23,12 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_qq_plf-nu*mmwms!vw-r2o2xd)r$$4&(y%$$vhb&*plhs$q+q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+SECURE_SSL_REDIRECT = True
 
 ALLOWED_HOSTS = ['*']
-
-## consider turning off SSL entirely ?
-# SECURE_SSL_REDIRECT = True
 
 # Application definition
 
