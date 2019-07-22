@@ -20,7 +20,7 @@
             text-align: center;
             padding: 5px 0;
             border-radius: 6px;
-            
+
             /* Position the tooltip text - see examples below! */
             position: absolute;
             z-index: 1;
@@ -39,16 +39,16 @@
     <body>
         <div class='homicidepage'>
             <h1 style="text-align: center; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
-                    Homicide: Life on the Street in Charlotte - 2019</h1>    
+                    Homicide: Life on the Street in Charlotte - 2019</h1>
             <div class='menu' style="text-align: center">
             [ <div class='tooltip'>
                     <a href="/homicide">Home</a>
                     <span class='tooltiptext'>Homepage</span>
-                </div> | 
+                </div> |
                 <div class='tooltip'>
                     <a href="/chart">Analytics/Charts</a>
                     <span class='tooltiptext'>Analytics/Charts</span>
-                </div> | 
+                </div> |
                 <div class='tooltip'>
                     <a href="/map">Maps</a>
                     <span class='tooltiptext'>View Map of all Homicides</span>
@@ -57,14 +57,23 @@
 
             <P></P>
 
-            <div id="viz">
-            </div>
+            <div id="viz"></div>
+            <div id="viz2"></div>
+            <P></P>
+            <div id="viz3"></div>
+            <div id="viz4"></div>
 
             <script type="text/javascript">
-                var spec = "{% url 'chart_obj' %}";
                 // transform the vega spec from altair as JSON,
                 // and render our cool viz on the page
+                var spec = "{% url 'chart_obj' %}";
                 vegaEmbed('#viz', spec)
+                var spec2 = "{% url 'chart_datetime' %}";
+                vegaEmbed('#viz2', spec2)
+                var spec3 = "{% url 'chart_stack' %}";
+                vegaEmbed('#viz3', spec3)
+                var spec4 = "{% url 'chart_mline' %}";
+                vegaEmbed('#viz4', spec4)
             </script>
         </div>
     </body>
