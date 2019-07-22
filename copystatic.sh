@@ -1,0 +1,1 @@
+azcopy /Source:c:/Users/dougc/git/homicide/tracker/static/tracker/homicide.js /Dest:https://homicidestorage.blob.core.windows.net/\$web/homicide.js /DestKey:LO328mwB8bq0tmPWqmPier0gp94OqXLrGBj+pZpm2CEoNEGn91vwMl/j/5rGwiHpy+JNJSxIKwWF7iCvHT4LUQ==
