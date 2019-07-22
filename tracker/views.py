@@ -27,7 +27,7 @@ class ArticleListView(generic.ListView):
 class MapView(generic.ListView):
     model = Homicide
     template_name = 'tracker/map.html'
-    queryset = Homicide.objects.all().order_by('-count')
+    queryset = Homicide.objects.all().order_by('count')
     context_object_name = 'h_list'
 
 def chart_obj(request):
