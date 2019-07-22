@@ -38,5 +38,5 @@ class Homicide(models.Model):
         return self.articles.all()
 
     def __str__(self):
-        return str(self.date) + ' ' + self.street + ', Articles: ' + str(self.articles)
+        return str(self.date) + ' ' + self.street + ' age:' + str(self.age) + ' seq#:'+str(self.count)
 
