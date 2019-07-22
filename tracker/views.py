@@ -67,12 +67,13 @@ def chart_mline(request):
     h_list = Homicide.objects.annotate(month=TruncMonth('date')).values('month').annotate(count=Count('count')).values('month','count','ethnicity')
     data = alt.Data(values=list(h_list))
 
-    chart = alt.Chart(data, height=300, width=300, title='Month Count by Ethnicity').mark_line(size=1).encode(
+    chart = alt.Chart(data, height=300, width=300, title='By Ethnicity').mark_bar(opacity=0.7).encode(
         x='month:N',
         y='count:Q',
         color='ethnicity:N'
     ).interactive()
     return JsonResponse(chart.to_dict(), safe=False)
+
 
 def chart(request):
     return render(request, "tracker/chart.html", {})

@@ -1,5 +1,6 @@
 /*
-  initialize Map function
+  initialize Map function -- stored as blob
+        <script type="text/javascript" src="https://homicidestorage.z13.web.core.windows.net/homicide.js"></script>
  */
 
 function initializeMap(addresses) {
