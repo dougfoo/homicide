@@ -1,94 +1,6 @@
 <html>
     <head>
-        <style>
-        .homicidepage {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        .homicidepage table {
-            margin-left:auto; 
-            margin-right:auto;
-        } 
-        .homicidedetails {
-            border: 1px solid black;
-            font-size: 0.75em; 
-        }
-
-        .listview {
-            height:30%; 
-            overflow:auto;
-        }
-        .listview td, .listview th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        .listview tr:nth-child(even){background-color: #f2f2f2;}
-        .listview tr:hover {background-color: #ddd;}
-        .listview th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: #A93226;
-            color: white;
-        }
-
-        .details {
-            table-layout: fixed; 
-        }
-        .details th, .details td {
-            padding-top: 0px;
-            padding-bottom: 0px;
-        }
-        .details th {
-            text-align: left;
-            width: 200px;
-            background-color: #F2D7D5;
-            color: black;
-        }
-
-        .articles {
-            font-size: .8em; 
-            table-layout: fixed; 
-            width: 80%;
-        }
-        .articles th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: rgb(175, 125, 112);
-            color: white;
-        }
-        .articles td, .articles th {
-            border: 1px solid tan;
-            padding: 8px;
-        }
-        .articles a:link { color: rgb(253, 255, 119) }
-        .articles a:visited { color: rgb(236, 234, 230) }
-
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-        }
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 120px;
-            background-color: black;
-            color: #fff;
-            text-align: center;
-            padding: 5px 0;
-            border-radius: 6px;
-            
-            /* Position the tooltip text - see examples below! */
-            position: absolute;
-            z-index: 1;
-        }
-        .tooltip:hover .tooltiptext {
-             visibility: visible;
-        }
-        </style>
-
+        <LINK href="https://homicidestorage.z13.web.core.windows.net/styles.css" rel="stylesheet" type="text/css">
         <script type="text/javascript" >
             var geocoder;
             var map;
@@ -169,7 +81,7 @@
             </div>
             
 
-            <div class='listview'>
+            <div id='listviewid' class='listview'>
                 <table >
                     <tr>
                         <th>Seq</th>
@@ -197,10 +109,11 @@
             </div>
             <div style="width:100%; text-align: center; font-size:.5em; height: 10px; background-color: whitesmoke;">
                 <div class='tooltip'>
-                    <span style="color: rgba(137, 144, 150, 0.699)">Expand/Collapse</span> 
+                    <span onClick="javascript:document.getElementById('listviewid').style.height = '80%'" style="color: rgba(137, 144, 150, 0.699)">Expand/Collapse</span> 
                     <span class='tooltiptext'>Coming Soon</span>
                 </div>
             </div>
+
             {% if homicide %}
             <div class='details'>
                 <table>
