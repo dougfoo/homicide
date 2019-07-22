@@ -53,27 +53,38 @@ def chart_datetime(request):
     return JsonResponse(chart.to_dict(), safe=False)
 
 def chart_stack(request):
-    h_list = Homicide.objects.annotate(month=TruncMonth('date')).values('month').annotate(count=Count('count')).values('month','count','gender')
+    h_list = Homicide.objects.annotate(month=TruncMonth('date')).values('month').annotate(ct=Count('count')).values('month','ct','gender')
     data = alt.Data(values=list(h_list))
 
     chart = alt.Chart(data, height=300, width=300, title='Month Count by Gender').mark_bar().encode(
         x='month:N',
-        y='count:Q',
+        y='ct:Q',
         color='gender:N'
     ).interactive()
     return JsonResponse(chart.to_dict(), safe=False)
 
 def chart_mline(request):
-    h_list = Homicide.objects.annotate(month=TruncMonth('date')).values('month').annotate(count=Count('count')).values('month','count','ethnicity')
+    h_list = Homicide.objects.annotate(month=TruncMonth('date')).values('month').annotate(ct=Count('count')).values('month','ct','ethnicity')
     data = alt.Data(values=list(h_list))
 
-    chart = alt.Chart(data, height=300, width=300, title='By Ethnicity').mark_bar(opacity=0.7).encode(
+    chart = alt.Chart(data, height=300, width=300, title='Month Count by Ethnicity').mark_bar(opacity=0.7).encode(
         x='month:N',
-        y='count:Q',
+        y='ct:Q',
         color='ethnicity:N'
     ).interactive()
     return JsonResponse(chart.to_dict(), safe=False)
 
+def chart_suspect(request):
+    h_list = Homicide.objects.values('killerage','killerethnicity').annotate(ct=Count('count')).values()
+    data = alt.Data(values=list(h_list))
+
+    chart = alt.Chart(data, height=300, width=300, title='Culprit Age/Ethnicity').mark_rect().encode(
+        x='killerage:N',
+        y='killerethnicity:N',
+        color='ct:Q'
+    )
+
+    return JsonResponse(chart.to_dict(), safe=False)
 
 def chart(request):
     return render(request, "tracker/chart.html", {})

@@ -11,5 +11,6 @@ urlpatterns = [
     path('chart_datetime/', views.chart_datetime, name='chart_datetime'),
     path('chart_stack/', views.chart_stack, name='chart_stack'),
     path('chart_mline/', views.chart_mline, name='chart_mline'),
+    path('chart_suspect/', views.chart_suspect, name='chart_suspect'),
     path('chart/', views.chart, name='chart'),
 ]

@@ -62,6 +62,9 @@
             <P></P>
             <div id="viz3"></div>
             <div id="viz4"></div>
+            <P></P>
+            <div id="viz5"></div>
+            <div id="viz6"></div>
 
             <script type="text/javascript">
                 // transform the vega spec from altair as JSON,
@@ -74,6 +77,8 @@
                 vegaEmbed('#viz3', spec3)
                 var spec4 = "{% url 'chart_mline' %}";
                 vegaEmbed('#viz4', spec4)
+                var spec5 = "{% url 'chart_suspect' %}";
+                vegaEmbed('#viz5', spec5)
             </script>
         </div>
     </body>
