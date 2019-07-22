@@ -20,10 +20,10 @@ function initializeMap(addresses) {
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     var i=0;
     addresses.forEach(function(add,i) { 
-        console.log('addrs:', add.street);
+        console.log('addrs:', add);
         setTimeout(function(){
         geocoder.geocode({
-            'address': add.street
+            'address': add
             }, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
@@ -32,10 +32,10 @@ function initializeMap(addresses) {
                             position: results[0].geometry.location,
                             map: map,
                             icon: 'https://homicidestorage.z13.web.core.windows.net/icons8-skull-crossbones-48.png',
-                            title: results[0].formatted_address + ', ' +add.date,
+                            title: results[0].formatted_address,
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: '<div id="info">'+results[0].formatted_address + '<br>Homicide on: '+add.date+'</div>',
+                            content: results[0].formatted_address,
                             size: new google.maps.Size(150, 50)
                         });
                         marker.addListener('click', function() {

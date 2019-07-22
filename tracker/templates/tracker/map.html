@@ -5,16 +5,16 @@
         <title>Charlotte Homicide Map</title>
         <LINK href="https://homicidestorage.z13.web.core.windows.net/styles.css" rel="stylesheet" type="text/css">
 
-        <script type="text/javascript" src="https://homicidestorage.z13.web.core.windows.net/homicide.js"></script>
+        <script type="text/javascript" src="https://homicidestorage.z13.web.core.windows.net/homicide.1.js"></script>
         <script type="text/javascript" >
             var addresses = [];
 
             {% if homicide %}
-                addresses.push(' {{ homicide.street }} ');
+                addresses.push({'street':'{{ homicide.street }}','date':'{{ homicide.date}}'});
             {% else %}
                 {% if h_list %}
                     {% for item in h_list %}
-                        addresses.push(' {{ item.street }} ');
+                        addresses.push({'street':'{{ item.street }}','date':'{{ item.date}}'});
                     {% endfor %}
                 {% endif %}
             {% endif %}
