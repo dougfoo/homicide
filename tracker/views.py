@@ -89,3 +89,15 @@ def chart_suspect(request):
 def chart(request):
     return render(request, "tracker/chart.html", {})
 
+def fetch_article(request, eurl):
+    from goose3 import Goose
+    import base64 as b64
+    print('eurl',eurl)
+    url = b64.b64decode(eurl).decode('ascii')
+    print('decoded', url)
+
+    g=Goose()
+    article = g.extract(url=url)
+    my_dict = [{'heading': article.title, 'meta': article.meta_description, 'body': article.cleaned_text}]
+    return JsonResponse(my_dict, safe=False)
+

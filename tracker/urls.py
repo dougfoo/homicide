@@ -13,4 +13,5 @@ urlpatterns = [
     path('chart_mline/', views.chart_mline, name='chart_mline'),
     path('chart_suspect/', views.chart_suspect, name='chart_suspect'),
     path('chart/', views.chart, name='chart'),
+    path('fetch_article/<str:eurl>/', views.fetch_article, name='fetch_article'),
 ]
