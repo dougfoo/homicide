@@ -7,6 +7,7 @@ from django.db.models.functions import TruncMonth
 from django.db.models import Count, Sum, Avg
 import altair as alt
 
+# i dont think this is used, delete later
 class HomicideListView(generic.ListView):
     model = Homicide
     template_name = 'tracker/detail.html'
