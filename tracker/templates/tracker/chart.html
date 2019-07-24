@@ -32,12 +32,14 @@
 
             <div id="viz"></div>
             <div id="viz2"></div>
-            <P></P>
             <div id="viz3"></div>
-            <div id="viz4"></div>
             <P></P>
+            <div id="viz4"></div>
             <div id="viz5"></div>
             <div id="viz6"></div>
+            <P></P>
+            <div id="viz7"></div>
+            <div id="viz8"></div>
 
             <script type="text/javascript">
                 // transform the vega spec from altair as JSON,
@@ -54,6 +56,8 @@
                 vegaEmbed('#viz5', spec5)
                 var spec6 = "{% url 'chart_trend' %}";
                 vegaEmbed('#viz6', spec6)
+                var spec7 = "{% url 'chart_regression' %}";
+                vegaEmbed('#viz7', spec7)
             </script>
         </div>
     </body>

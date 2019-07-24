@@ -6,6 +6,8 @@ from django.views import generic
 from django.db.models.functions import TruncMonth
 from django.db.models import Count, Sum, Avg
 import altair as alt
+import pandas as pd
+import numpy as np
 
 # i dont think this is used, delete later
 class HomicideListView(generic.ListView):
@@ -77,14 +79,15 @@ def chart_mline(request):
     return JsonResponse(chart.to_dict(), safe=False)
 
 def chart_suspect(request):
-    h_list = Homicide.objects.values('killerage','killerethnicity').annotate(ct=Count('count')).values()
+    h_list = Homicide.objects.annotate(ct=Count('count')).values('ethnicity','killerethnicity','ct').annotate(s=Sum('ethnicity'))
     data = alt.Data(values=list(h_list))
 
-    chart = alt.Chart(data, height=300, width=300, title='Culprit Age/Ethnicity').mark_rect().encode(
-        x='killerage:N',
+    chart = alt.Chart(data, height=300, width=300, title='Culprit vs Victim').mark_rect().encode(
+        x='ethnicity:N',
         y='killerethnicity:N',
-        color='ct:Q'
-    )
+        color='ct:Q',
+        tooltip=['ct:Q']
+    ).interactive()
     return JsonResponse(chart.to_dict(), safe=False)
 
 def chart_trend(request):
@@ -99,6 +102,45 @@ def chart_trend(request):
         x='month:N',
         y='cumulative_count:Q',
     )
+    return JsonResponse(chart.to_dict(), safe=False)
+
+def chart_regression(request):
+
+    h_list = Homicide.objects.annotate(month=TruncMonth('date')).values('month').annotate(ct=Count('count')).values('month','ct')
+    df = pd.DataFrame(list(h_list))
+    df['cum'] = df['ct'].cumsum()
+    df['i'] = df.index+1
+    df = df.drop(columns=['month','ct'])
+
+    # Define the degree of the polynomial fit
+    degree_list = [1, 3, 5]
+
+    # break into baby steps for graph
+    poly_data = pd.DataFrame({'xfit': np.linspace(df['i'].min(), df['i'].max(), 500)})
+
+    for degree in degree_list:
+        poly_data[str(degree)] = np.poly1d(np.polyfit(df['i'], df['cum'], degree))(poly_data['xfit'])
+
+    # Tidy the dataframe so 'degree' is a variable
+    poly_data = pd.melt(poly_data,
+                        id_vars=['xfit'],
+                        value_vars=[str(deg) for deg in degree_list],
+                        var_name='degree', value_name='yfit')
+
+    # Plot the data points on an interactive axis
+    points = alt.Chart(df).mark_circle(color='black').encode(
+        x=alt.X('i', title='months'),
+        y=alt.Y('cum', title='cumulative murder count')
+    ).interactive()
+
+    # Plot the best fit polynomials
+    polynomial_fit = alt.Chart(poly_data).mark_line().encode(
+        x='xfit',
+        y='yfit',
+        color='degree'
+    )
+
+    chart = points + polynomial_fit
     return JsonResponse(chart.to_dict(), safe=False)
 
 def chart(request):
