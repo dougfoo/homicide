@@ -35,9 +35,10 @@ def chart_obj(request):
     h_list = Homicide.objects.annotate(c=Count('count')).values('age','c','gender')
     data = alt.Data(values=list(h_list))
     chart = alt.Chart(data, height=300, width=300, title='Age / Gender').mark_circle().encode(
-        x='age:Q',
-        y='gender:N',
-        size='sum(c):Q'
+        alt.X('age:Q',bin=True),
+        alt.Y('gender:N'),
+        alt.Size('sum(c):Q',title='Counts'),
+        color='sum(c):Q'
     )
     return JsonResponse(chart.to_dict(), safe=False)
 
@@ -46,8 +47,8 @@ def chart_datetime(request):
     data = alt.Data(values=list(h_list))
 
     chart = alt.Chart(data, title='Date vs Time').mark_circle(size=60).encode(
-        x='date:T',
-        y='time:O',
+        alt.X('date:T'),
+        alt.Y('time:O'),
         color='gender:N',
         tooltip=['age:Q', 'means:N', 'ethnicity:N', 'location:N', 'time:O']
     ).interactive()
@@ -84,7 +85,20 @@ def chart_suspect(request):
         y='killerethnicity:N',
         color='ct:Q'
     )
+    return JsonResponse(chart.to_dict(), safe=False)
 
+def chart_trend(request):
+    h_list = Homicide.objects.annotate(month=TruncMonth('date')).values('month','id')
+    data = alt.Data(values=list(h_list))
+
+    chart = alt.Chart(data,height=300, width=300, title='Cumulative Count').transform_window(
+        sort=[{'field': 'month'}],
+        frame=[None, 0],
+        cumulative_count='count(id)',
+    ).mark_area().encode(
+        x='month:N',
+        y='cumulative_count:Q',
+    )
     return JsonResponse(chart.to_dict(), safe=False)
 
 def chart(request):
