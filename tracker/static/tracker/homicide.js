@@ -3,11 +3,11 @@
         <script type="text/javascript" src="https://homicidestorage.z13.web.core.windows.net/homicide.js"></script>
  */
 
-function initializeMap(addresses) {
+function initializeMap(addresses, zoom) {
     geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(35.2251855,-80.8415298);
     var myOptions = {
-        zoom: 11,
+        zoom: zoom,
         center: latlng,
         mapTypeControl: true,
         mapTypeControlOptions: {
