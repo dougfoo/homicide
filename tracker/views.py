@@ -105,18 +105,17 @@ def chart_trend(request):
     return JsonResponse(chart.to_dict(), safe=False)
 
 def chart_regression(request):
-
     h_list = Homicide.objects.annotate(month=TruncMonth('date')).values('month').annotate(ct=Count('count')).values('month','ct')
     df = pd.DataFrame(list(h_list))
     df['cum'] = df['ct'].cumsum()
-    df['i'] = df.index+1
+    df['i'] = df.index+1   # 1 is start of year
     df = df.drop(columns=['month','ct'])
 
     # Define the degree of the polynomial fit
-    degree_list = [1, 3, 5]
+    degree_list = [1, 2, 3]
 
     # break into baby steps for graph
-    poly_data = pd.DataFrame({'xfit': np.linspace(df['i'].min(), df['i'].max(), 500)})
+    poly_data = pd.DataFrame({'xfit': np.linspace(df['i'].min(), 12, 500)})  # 12 is end of year
 
     for degree in degree_list:
         poly_data[str(degree)] = np.poly1d(np.polyfit(df['i'], df['cum'], degree))(poly_data['xfit'])
@@ -128,7 +127,7 @@ def chart_regression(request):
                         var_name='degree', value_name='yfit')
 
     # Plot the data points on an interactive axis
-    points = alt.Chart(df).mark_circle(color='black').encode(
+    points = alt.Chart(df,title='Regression Predictions').mark_circle(color='black').encode(
         x=alt.X('i', title='months'),
         y=alt.Y('cum', title='cumulative murder count')
     ).interactive()
@@ -137,7 +136,8 @@ def chart_regression(request):
     polynomial_fit = alt.Chart(poly_data).mark_line().encode(
         x='xfit',
         y='yfit',
-        color='degree'
+        color=alt.Color('degree',title='Color / Model'),
+        tooltip=[alt.Tooltip('yfit',title='predicted homicides'),alt.Tooltip('xfit',title='Month')]
     )
 
     chart = points + polynomial_fit
