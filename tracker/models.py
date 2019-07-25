@@ -21,7 +21,7 @@ class Homicide(models.Model):
     intersection = models.CharField(max_length=120, blank=True, default='')
     mapiframe = models.TextField(blank=True, default='')
     gender = models.CharField(max_length=1, choices=GENDERS, default='O')
-    age = models.IntegerField(blank=True, default='')
+    age = models.IntegerField(blank=True, default=0)
     name = models.CharField(max_length=80, blank=True, default='')
     ethnicity = models.CharField(max_length=1, choices=ETHNICITIES, default='O')
     motive = models.CharField(max_length=1, choices=MOTIVES, default='O')
