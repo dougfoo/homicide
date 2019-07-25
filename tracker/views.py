@@ -9,11 +9,11 @@ import altair as alt
 import pandas as pd
 import numpy as np
 
-# i dont think this is used, delete later
+# still used but should migrate to single detail view ??
 class HomicideListView(generic.ListView):
     model = Homicide
     template_name = 'tracker/detail.html'
-    queryset = Homicide.objects.all().order_by('-count')
+    queryset = Homicide.objects.all().order_by('-date')
     context_object_name = 'h_list'
 
 def detail(request, homicide_id):
@@ -60,7 +60,7 @@ def chart_stack(request):
     h_list = Homicide.objects.annotate(month=TruncMonth('date')).values('month').annotate(ct=Count('count')).values('month','ct','gender')
     data = alt.Data(values=list(h_list))
 
-    chart = alt.Chart(data, height=300, width=300, title='Month Count by Gender').mark_bar().encode(
+    chart = alt.Chart(data, height=300, width=300, title='Month Count by Gender').mark_bar(size=30).encode(
         x='month:T',
         y='ct:Q',
         color='gender:N'
@@ -71,7 +71,7 @@ def chart_mline(request):
     h_list = Homicide.objects.annotate(month=TruncMonth('date')).values('month').annotate(ct=Count('count')).values('month','ct','ethnicity')
     data = alt.Data(values=list(h_list))
 
-    chart = alt.Chart(data, height=300, width=300, title='Month Count by Ethnicity').mark_bar(opacity=0.7).encode(
+    chart = alt.Chart(data, height=300, width=300, title='Month Count by Ethnicity').mark_bar(size=30,opacity=0.7).encode(
         x='month:T',
         y='ct:Q',
         color='ethnicity:N'
@@ -83,8 +83,8 @@ def chart_suspect(request):
     data = alt.Data(values=list(h_list))
 
     chart = alt.Chart(data, height=300, width=300, title='Culprit vs Victim').mark_rect().encode(
-        x='ethnicity:N',
-        y='killerethnicity:N',
+        alt.X('ethnicity:N',title='victim ethnicity'),
+        alt.Y('killerethnicity:N',title='culprit ethnicity'),
         color='ct:Q',
         tooltip=['ct:Q']
     ).interactive()
