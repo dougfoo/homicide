@@ -61,7 +61,7 @@ def chart_stack(request):
     data = alt.Data(values=list(h_list))
 
     chart = alt.Chart(data, height=300, width=300, title='Month Count by Gender').mark_bar().encode(
-        x='month:N',
+        x='month:T',
         y='ct:Q',
         color='gender:N'
     ).interactive()
@@ -72,7 +72,7 @@ def chart_mline(request):
     data = alt.Data(values=list(h_list))
 
     chart = alt.Chart(data, height=300, width=300, title='Month Count by Ethnicity').mark_bar(opacity=0.7).encode(
-        x='month:N',
+        x='month:T',
         y='ct:Q',
         color='ethnicity:N'
     ).interactive()
@@ -99,7 +99,7 @@ def chart_trend(request):
         frame=[None, 0],
         cumulative_count='count(id)',
     ).mark_area().encode(
-        x='month:N',
+        x='month:T',
         y='cumulative_count:Q',
     )
     return JsonResponse(chart.to_dict(), safe=False)
@@ -127,7 +127,7 @@ def chart_regression(request):
                         var_name='degree', value_name='yfit')
 
     # Plot the data points on an interactive axis
-    points = alt.Chart(df,title='Regression Predictions').mark_circle(color='black').encode(
+    points = alt.Chart(df,title='Polynomial Regression Predictions').mark_circle(color='black').encode(
         x=alt.X('i', title='months'),
         y=alt.Y('cum', title='cumulative murder count')
     ).interactive()
@@ -136,7 +136,7 @@ def chart_regression(request):
     polynomial_fit = alt.Chart(poly_data).mark_line().encode(
         x='xfit',
         y='yfit',
-        color=alt.Color('degree',title='Color / Model'),
+        color=alt.Color('degree',title='Model'),
         tooltip=[alt.Tooltip('yfit',title='predicted homicides'),alt.Tooltip('xfit',title='Month')]
     )
 
