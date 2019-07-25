@@ -68,6 +68,7 @@
                         <th>News Header</th>
                         <th>Age</th>
                         <th>Gender</th>
+                        <th>Victim</th>
                         <th>Means</th>
                         <th>Street</th>
                     </tr>
@@ -79,6 +80,7 @@
                                 <td><a href="/homicide/{{ item.id }}">{{ item.articles.all | first |truncatechars:60 }}</a> </td>
                                 <td> {{item.age}}</td>
                                 <td> {{item.gender}}</td>
+                                <td> {{item.name}}</td>
                                 <td> {{item.get_means_display}}</td>
                                 <td> {{item.street}}</td>
                             </tr>
