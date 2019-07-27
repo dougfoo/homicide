@@ -2225,6 +2225,9 @@
     try{ mapEnvironment.AddDpItemMapSettings('03f34000ee277982ee234e1eb590', '278'); }
     catch(e){ }
 </script></td></tr><tr class="cbResultSetDataRow" data-cb-name="data" id="DataRow279_633d3d9e1e85f4"><td class="cbResultSetData cbResultSetTableCell">20190114-1058-01</td><td class="cbResultSetData cbResultSetTableCell"><span id="MapItLink:279:03f34000ee277982ee234e1eb590"></span>
+
+<!-- commentary: jan is missing some from what i have -->
+
 <div id="Address:279:03f34000ee277982ee234e1eb590" style="display:none;">North Carolina, CHARLOTTE, , 3100 N SHARON AMITY RD</div>
 <div id="Description:279:03f34000ee277982ee234e1eb590" style="display:none;">20190114-1058-01<br />Cleared by Arrest, 1/14/2019<br />KHALILOV ELCHIN, 29.000000, M, White, Other/Not Listed<br />3100 N SHARON AMITY RD<br /></div>
 <div id="Latitude:279:03f34000ee277982ee234e1eb590" style="display:none;">35.201712</div>
@@ -2297,6 +2300,8 @@
     try{ mapEnvironment.AddDpItemMapSettings('03f34000ee277982ee234e1eb590', '287'); }
     catch(e){ }
 </script></td></tr><tr class="cbResultSetDataRow" data-cb-name="data" id="DataRow288_633d3d9e1e85f4"><td class="cbResultSetData cbResultSetTableCell">20190218-0344-00</td><td class="cbResultSetData cbResultSetTableCell"><span id="MapItLink:288:03f34000ee277982ee234e1eb590"></span>
+
+<!-- commentary: why is it unkonwn ?  Melson Kawon Quince is what I found -->
 <div id="Address:288:03f34000ee277982ee234e1eb590" style="display:none;">North Carolina, CHARLOTTE, , 3000 LITTLE ROCK RD</div>
 <div id="Description:288:03f34000ee277982ee234e1eb590" style="display:none;">20190218-0344-00<br />Open, 2/18/2019<br />UNKNOWN UNKNOWN, , M, Black, Other/Not Listed<br />3000 LITTLE ROCK RD<br /></div>
 <div id="Latitude:288:03f34000ee277982ee234e1eb590" style="display:none;">35.236634</div>

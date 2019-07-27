@@ -136,7 +136,7 @@ def chart_regression(request):
     polynomial_fit = alt.Chart(poly_data).mark_line().encode(
         x='xfit',
         y='yfit',
-        color=alt.Color('degree',title='Model'),
+        color=alt.Color('degree',title='Degree / Model'),
         tooltip=[alt.Tooltip('yfit',title='predicted homicides'),alt.Tooltip('xfit',title='Month')]
     )
 
