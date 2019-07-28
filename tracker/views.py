@@ -44,6 +44,7 @@ def chart_obj(request):
     )
     return JsonResponse(chart.to_dict(), safe=False)
 
+# want to merge time to hour only... 
 def chart_datetime(request):
     h_list = Homicide.objects.only('date','time','gender','age','means','location').values()
     data = alt.Data(values=list(h_list))
@@ -52,7 +53,7 @@ def chart_datetime(request):
         alt.X('date:T'),
         alt.Y('time:O'),
         color='gender:N',
-        tooltip=['age:Q', 'means:N', 'ethnicity:N', 'location:N', 'time:O']
+        tooltip=['age:Q', 'means:N', 'ethnicity:N', 'location:N']
     ).interactive()
     return JsonResponse(chart.to_dict(), safe=False)
 
