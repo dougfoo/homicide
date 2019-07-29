@@ -2421,10 +2421,12 @@
 <script type="text/javascript">
     try{ mapEnvironment.AddDpItemMapSettings('03f34000ee277982ee234e1eb590', '302'); }
     catch(e){ }
+
+<!--  is this a homicide police shooting  -->
 </script></td></tr><tr class="cbResultSetDataRow" data-cb-name="data" id="DataRow303_633d3d9e1e85f4"><td class="cbResultSetData cbResultSetTableCell">20190325-1106-05</td><td class="cbResultSetData cbResultSetTableCell"><span id="MapItLink:303:03f34000ee277982ee234e1eb590"></span>
 <div id="Address:303:03f34000ee277982ee234e1eb590" style="display:none;">North Carolina, CHARLOTTE, , 2600 BEATTIES FORD RD</div>
-<div id="Description:303:03f34000ee277982ee234e1eb590" style="display:none;">20190325-1106-05<br />Open, 3/25/2019<br />FRANKLIN DANQUIRS, 27.000000, M, Black, Unknown/Refused<br />2600 BEATTIES FORD RD<br /></div>
-<div id="Latitude:303:03f34000ee277982ee234e1eb590" style="display:none;">35.269736</div>
+<div id="Description:303:03f34000ee277982ee234e1eb590" style="display:none;">20190325-1106-05<br />Open, 3/25/2019<br />, 27.000000, M, Black, Unknown/Refused<br />2600 BEATTIES FORD RD<br /></div>
+<div id="Latitude:303:03f34000ee277982ee234e1eb590" style="display:none;">35.269736</div>FRANKLIN DANQUIRS
 <div id="Longitude:303:03f34000ee277982ee234e1eb590" style="display:none;">- 80.853355</div>
 <script type="text/javascript">
     try{ mapEnvironment.AddDpItemMapSettings('03f34000ee277982ee234e1eb590', '303'); }
@@ -2445,6 +2447,7 @@
 <script type="text/javascript">
     try{ mapEnvironment.AddDpItemMapSettings('03f34000ee277982ee234e1eb590', '305'); }
     catch(e){ }
+
 </script></td></tr><tr class="cbResultSetDataRow" data-cb-name="data" id="DataRow306_633d3d9e1e85f4"><td class="cbResultSetData cbResultSetTableCell">&nbsp;</td><td class="cbResultSetData cbResultSetTableCell"><span id="MapItLink:306:03f34000ee277982ee234e1eb590"></span>
 <div id="Address:306:03f34000ee277982ee234e1eb590" style="display:none;">North Carolina, CHARLOTTE, , Newland Road</div>
 <div id="Description:306:03f34000ee277982ee234e1eb590" style="display:none;"><br />Cleared by Arrest, 4/3/2019<br />ACEVEDO SANTA, 71.000000, F, Unknown, Unknown/Refused<br />Newland Road<br /></div>
@@ -2525,6 +2528,8 @@
 <script type="text/javascript">
     try{ mapEnvironment.AddDpItemMapSettings('03f34000ee277982ee234e1eb590', '315'); }
     catch(e){ }
+
+<!-- to here for now -->
 </script></td></tr><tr class="cbResultSetDataRow" data-cb-name="data" id="DataRow316_633d3d9e1e85f4"><td class="cbResultSetData cbResultSetTableCell">&nbsp;</td><td class="cbResultSetData cbResultSetTableCell"><span id="MapItLink:316:03f34000ee277982ee234e1eb590"></span>
 <div id="Address:316:03f34000ee277982ee234e1eb590" style="display:none;">North Carolina, CHARLOTTE, , 5900 Block of South Boulevard</div>
 <div id="Description:316:03f34000ee277982ee234e1eb590" style="display:none;"><br />Cleared by Arrest, 5/1/2019<br />VENANCIO-TAPIA DOMINGO, , M, , <br />5900 Block of South Boulevard<br /></div>
