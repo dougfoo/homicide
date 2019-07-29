@@ -50,7 +50,7 @@ def chart_datetime(request):
 
     data = alt.Data(values=list(h_list))
 
-    chart = alt.Chart(data, title='Date vs Time').mark_circle(size=60).encode(
+    chart = alt.Chart(data, title='ToD (Time) vs Date Scatter').mark_circle(size=60).encode(
         alt.X('date:T'),
         alt.Y('time:O'),
         color='gender:N',
