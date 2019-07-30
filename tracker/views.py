@@ -14,7 +14,8 @@ class HomicideListView(generic.ListView):
     model = Homicide
     template_name = 'tracker/detail.html'
     queryset = Homicide.objects.all().order_by('-date')
-    #queryset = Homicide.objects.all().order_by('-date').annotate(r=Window(expression=RowNumber(),order_by=[F('date')]))
+    # fails on azure, window() support?
+    # queryset = Homicide.objects.all().order_by('-date').annotate(r=Window(expression=RowNumber(),order_by=[F('date')]))
     context_object_name = 'h_list'
 
 def detail(request, homicide_id):
@@ -64,7 +65,10 @@ def chart_heat(request):
     chart = alt.Chart(data, height=300, width=300, title='Age vs Ethnicity').mark_rect().encode(
         alt.X('ethnicity:N',title='ethnicity'),
         alt.Y('age:N',title='age', bin=True),
-        color='sum(ct):Q',
+        color = alt.Color('sum(ct):Q', scale=alt.Scale(
+            domain=['1', '25', '50'],
+            range=['yellow', 'red', 'black'])
+        ),
         tooltip=['sum(ct):Q']
     ).interactive()
     return JsonResponse(chart.to_dict(), safe=False)
@@ -178,7 +182,13 @@ def chart_regression(request):
         tooltip=[alt.Tooltip('yfit',title='predicted homicides'),alt.Tooltip('xfit',title='Month')]
     )
 
-    chart = points + polynomial_fit
+    max = pd.DataFrame({'xs':[1,500], 'ys':[129,129]} )
+    record = alt.Chart(max).mark_rule(color='red').encode(
+        y='ys',
+        tooltip=[alt.Tooltip('ys',title='record in 1993')]
+    )
+
+    chart = points + polynomial_fit + record
     return JsonResponse(chart.to_dict(), safe=False)
 
 def chart(request):
