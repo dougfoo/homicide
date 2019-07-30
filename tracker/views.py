@@ -184,7 +184,7 @@ def chart_regression(request):
     )
 
     max = pd.DataFrame({'xs':[1,500], 'ys':[129,129]} )
-    record = alt.Chart(max).mark_rule(color='red').encode(
+    record = alt.Chart(max).mark_rule(color='green').encode(
         y='ys',
         tooltip=[alt.Tooltip('ys',title='record in 1993')]
     )
