@@ -14,12 +14,12 @@ class HomicideListView(generic.ListView):
     model = Homicide
     template_name = 'tracker/detail.html'
     queryset = Homicide.objects.all().order_by('-date').annotate(r=Window(expression=RowNumber(),order_by=[F('date')]))
-
     context_object_name = 'h_list'
 
 def detail(request, homicide_id):
     homicide = get_object_or_404(Homicide, pk=homicide_id)
-    h_list = Homicide.objects.all().order_by('-date')
+    #h_list = Homicide.objects.all().order_by('-date')
+    h_list = Homicide.objects.all().order_by('-date').annotate(r=Window(expression=RowNumber(),order_by=[F('date')]))
     return render(request, 'tracker/detail.html', {'h_list': h_list, 'homicide': homicide })
 
 class ArticleListView(generic.ListView):
@@ -49,7 +49,7 @@ def chart_cod(request):
     h_list = Homicide.objects.values('means','gender')
     data = alt.Data(values=list(h_list))
     chart = alt.Chart(data, height=300, width=300, title='CoD - Cause of Death').mark_bar().encode(
-        alt.X('means:N', title='Cause (G)un, (S)tabbing, (O)ther'),
+        alt.X('means:N', title='Cause (G)un, (O)ther, (S)tabbing'),
         alt.Y('count(means):Q', title='Count'),
         color='gender:N'
     )
