@@ -45,6 +45,16 @@ def chart_obj(request):
     )
     return JsonResponse(chart.to_dict(), safe=False)
 
+def chart_cod(request):
+    h_list = Homicide.objects.values('means','gender')
+    data = alt.Data(values=list(h_list))
+    chart = alt.Chart(data, height=300, width=300, title='CoD - Cause of Death').mark_bar().encode(
+        alt.X('means:N', title='Cause (G)un, (S)tabbing, (O)ther'),
+        alt.Y('count(means):Q', title='Count'),
+        color='gender:N'
+    )
+    return JsonResponse(chart.to_dict(), safe=False)
+
 # want to merge time to hour only... 
 def chart_heat(request):
     h_list = Homicide.objects.annotate(ct=Count('count')).values('ethnicity','gender','age','ct')
