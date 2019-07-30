@@ -1,4 +1,4 @@
 goose3==3.1.6
-django==2.2.3
+Django==2.2.3
 altair==3.1.0
 

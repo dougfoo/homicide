@@ -13,6 +13,7 @@ import numpy as np
 class HomicideListView(generic.ListView):
     model = Homicide
     template_name = 'tracker/detail.html'
+    #queryset = Homicide.objects.all().order_by('-date')
     queryset = Homicide.objects.all().order_by('-date').annotate(r=Window(expression=RowNumber(),order_by=[F('date')]))
     context_object_name = 'h_list'
 
