@@ -2,6 +2,7 @@
 Homicide Life on the Street in Charlotte Tracker
 
 Playing w/ Django -- basic tracker for 2019 crime/homicides in charlotte
+For now this is published https://clt-homicide.azurewebsites.net/chart/
 
 Goal
 - Learn bit more Django
