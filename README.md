@@ -14,3 +14,5 @@ Longer term
    - Link to maps
    - Add article text analysis
    - Data analysis / visualization    
+
+![Example](https://github.com/dougfoo/homicide/homicide1.png)
