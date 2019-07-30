@@ -53,7 +53,8 @@ def chart_cod(request):
     chart = alt.Chart(data, height=300, width=300, title='CoD - Cause of Death').mark_bar().encode(
         alt.X('means:N', title='Cause (G)un, (O)ther, (S)tabbing'),
         alt.Y('count(means):Q', title='Count'),
-        color='gender:N'
+        color='gender:N',
+        tooltip=['count(means):Q']
     )
     return JsonResponse(chart.to_dict(), safe=False)
 
