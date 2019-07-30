@@ -15,4 +15,4 @@ Longer term
    - Add article text analysis
    - Data analysis / visualization    
 
-![Example](https://github.com/dougfoo/homicide/homicide1.png)
+![Example](https://github.com/dougfoo/homicide/blob/master/homicide1.png)
