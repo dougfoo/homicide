@@ -1,10 +1,10 @@
 from django.http import HttpResponse, JsonResponse
-from .models import Article, Homicide
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
-from django.db.models.functions import TruncMonth
+from django.db.models.functions import TruncMonth, TruncHour
 from django.db.models import Count, Sum, Avg
+from .models import Article, Homicide
 import altair as alt
 import pandas as pd
 import numpy as np
@@ -45,18 +45,42 @@ def chart_obj(request):
     return JsonResponse(chart.to_dict(), safe=False)
 
 # want to merge time to hour only... 
-def chart_datetime(request):
-    h_list = Homicide.objects.only('date','time','gender','age','means','location').values()
+def chart_heat(request):
+    h_list = Homicide.objects.annotate(ct=Count('count')).values('ethnicity','gender','age','ct')
+    data = alt.Data(values=list(h_list))
+
+    chart = alt.Chart(data, height=300, width=300, title='Age vs Ethnicity').mark_rect().encode(
+        alt.X('ethnicity:N',title='ethnicity'),
+        alt.Y('age:N',title='age', bin=True),
+        color='sum(ct):Q',
+        tooltip=['sum(ct):Q']
+    ).interactive()
+    return JsonResponse(chart.to_dict(), safe=False)
+
+# want to merge time to hour only... 
+def chart_tod(request):
+    h_list = Homicide.objects.annotate(hour=TruncHour('time')).values('hour').annotate(ct=Count('count')).values('hour','ct','date','gender')
 
     data = alt.Data(values=list(h_list))
 
-    chart = alt.Chart(data, title='ToD (Time) vs Date Scatter').mark_circle(size=60).encode(
+    chart1 = alt.Chart(data, title='ToD (Time) vs Date Scatter').mark_circle(size=100).encode(
         alt.X('date:T'),
-        alt.Y('time:O'),
+        alt.Y('hour:O'),
         color='gender:N',
-        tooltip=['age:Q', 'means:N', 'ethnicity:N', 'location:N']
+        tooltip=['gender:N','ct:Q','hour:O','date:T']
+    ).interactive()
+
+    chart2 = alt.Chart(data, title='ToD Summary').mark_bar().encode(
+        x='count()',
+        y=alt.Y('hour:O'),
+        color='gender:N'
+    ).properties(
+        width=100
     )
+
+    chart = alt.hconcat(chart1, chart2)
     return JsonResponse(chart.to_dict(), safe=False)
+
 
 def chart_stack(request):
     h_list = Homicide.objects.annotate(month=TruncMonth('date')).values('month').annotate(ct=Count('count')).values('month','ct','gender')
@@ -132,7 +156,7 @@ def chart_regression(request):
     points = alt.Chart(df,title='Polynomial Regression Predictions').mark_circle(color='black').encode(
         x=alt.X('i', title='months'),
         y=alt.Y('cum', title='cumulative murder count')
-    ).interactive()
+    )
 
     # Plot the best fit polynomials
     polynomial_fit = alt.Chart(poly_data).mark_line().encode(
