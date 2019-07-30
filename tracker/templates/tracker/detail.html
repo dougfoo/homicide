@@ -64,6 +64,7 @@
                 <table >
                     <tr>
                         <th>Seq</th>
+                        <th>Seq2</th>
                         <th>Date</th>
                         <th>News Header</th>
                         <th>Age</th>
@@ -76,6 +77,7 @@
                         {% for item in h_list %}
                             <tr>
                                 <td> {{item.count}}</td>
+                                <td> {{item.r}}</td>
                                 <td> {{item.date}}</td>
                                 <td><a href="/homicide/{{ item.id }}">{{ item.articles.all | first |truncatechars:60 }}</a> </td>
                                 <td> {{item.age}}</td>

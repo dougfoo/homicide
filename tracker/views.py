@@ -2,8 +2,8 @@ from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
-from django.db.models.functions import TruncMonth, TruncHour
-from django.db.models import Count, Sum, Avg
+from django.db.models.functions import TruncMonth, TruncHour, RowNumber
+from django.db.models import Count, Sum, Avg, Window, F
 from .models import Article, Homicide
 import altair as alt
 import pandas as pd
@@ -13,7 +13,8 @@ import numpy as np
 class HomicideListView(generic.ListView):
     model = Homicide
     template_name = 'tracker/detail.html'
-    queryset = Homicide.objects.all().order_by('-date')
+    queryset = Homicide.objects.all().order_by('-date').annotate(r=Window(expression=RowNumber(),order_by=[F('date')]))
+
     context_object_name = 'h_list'
 
 def detail(request, homicide_id):
