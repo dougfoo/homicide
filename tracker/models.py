@@ -1,5 +1,11 @@
 from django.db import models
 
+class Historical(models.Model):
+    year = models.IntegerField()
+    population = models.IntegerField()
+    num = models.IntegerField()
+    ref = models.CharField(max_length=256)
+
 class Article(models.Model):
     url = models.CharField(max_length=250)
     headline = models.CharField(max_length=250)

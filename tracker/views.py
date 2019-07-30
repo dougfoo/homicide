@@ -133,6 +133,7 @@ def chart_suspect(request):
     ).interactive()
     return JsonResponse(chart.to_dict(), safe=False)
 
+# not needed, removed
 def chart_trend(request):
     h_list = Homicide.objects.annotate(month=TruncMonth('date')).values('month','id')
     data = alt.Data(values=list(h_list))
