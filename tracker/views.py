@@ -185,11 +185,20 @@ def chart_regression(request):
 
     max = pd.DataFrame({'xs':[1,500], 'ys':[129,129]} )
     record = alt.Chart(max).mark_rule(color='green').encode(
-        y='ys',
-        tooltip=[alt.Tooltip('ys',title='record in 1993')]
+        y='ys', tooltip=[alt.Tooltip('ys',title='record in 1993')],
     )
 
-    chart = points + polynomial_fit + record
+    last = pd.DataFrame({'xs':[1,500], 'ys':[57,57]} )
+    last = alt.Chart(last).mark_rule(color='teal').encode(
+        y='ys', tooltip=[alt.Tooltip('ys',title='last year 2018')]
+    )
+
+    second = pd.DataFrame({'xs':[1,500], 'ys':[115,115]} )
+    second = alt.Chart(second).mark_rule(color='gray').encode(
+        y='ys', tooltip=[alt.Tooltip('ys',title='2nd highest 1991')]
+    )
+
+    chart = points + polynomial_fit + record + last + second   
     return JsonResponse(chart.to_dict(), safe=False)
 
 def chart(request):
