@@ -67,14 +67,14 @@ steps:
     replaceExistingArchive: true
   displayName: 'Archive build'
 
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)/Tests'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/Tests$(Build.BuildId).zip'
-    replaceExistingArchive: true
-  displayName: 'Archive tests'
+# - task: ArchiveFiles@2
+#   inputs:
+#     rootFolderOrFile: '$(Build.BinariesDirectory)/Tests'
+#     includeRootFolder: true
+#     archiveType: 'zip'
+#     archiveFile: '$(Build.ArtifactStagingDirectory)/Tests$(Build.BuildId).zip'
+#     replaceExistingArchive: true
+#   displayName: 'Archive tests'
 
 - task: PublishBuildArtifacts@1
   inputs:
