@@ -69,7 +69,7 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/Tests'
+    rootFolderOrFile: '$(Build.BinariesDirectory)/Tests'
     includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/Tests$(Build.BuildId).zip'
