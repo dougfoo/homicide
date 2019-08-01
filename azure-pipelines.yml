@@ -74,7 +74,7 @@ steps:
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/Tests$(Build.BuildId).zip'
     replaceExistingArchive: true
-  displayName: 'Run tests'
+  displayName: 'Archive tests'
 
 - task: PublishBuildArtifacts@1
   inputs:
