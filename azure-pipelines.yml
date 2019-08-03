@@ -23,7 +23,7 @@ steps:
 - script: |
     pip install setuptools
     pip install -r requirements.txt
-    pip uninstall django
+    pip uninstall -y django
     pip install django
   displayName: 'Depend'
 
