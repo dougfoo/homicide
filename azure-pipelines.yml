@@ -45,7 +45,7 @@ steps:
     verbose: # Optional
 
 - task: PythonScript@0
-  displayName:'Export project path'
+  displayName: 'Export project path'
   inputs:
     scriptSource: 'inline'
     script: |
