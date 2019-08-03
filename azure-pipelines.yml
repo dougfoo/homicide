@@ -48,17 +48,17 @@ steps:
     python manage.py test tracker --no-input
   displayName: 'Run tests'
 
-# reports path ok ?
-- script: |     
-   pytest --junitxml=reports/django-basic.xml     
-  displayName: 'Run pytests'
+# # reports path ok ?
+# - script: |     
+#    pytest --junitxml=reports/django-basic.xml     
+#   displayName: 'Run pytests'
 
-# reports path ok ?
-- task: PublishTestResults@2
-  inputs:
-    testResultsFiles: 'reports/django-basic.xml'
-    testRunTitle: '$(Agent.OS) - $(Build.DefinitionName) - Python $(python.version)'
-  condition: succeededOrFailed()
+# # reports path ok ?
+# - task: PublishTestResults@2
+#   inputs:
+#     testResultsFiles: 'reports/django-basic.xml'
+#     testRunTitle: '$(Agent.OS) - $(Build.DefinitionName) - Python $(python.version)'
+#   condition: succeededOrFailed()
 
 # $(System.DefaultWorkingDirectory)/Application
 - task: ArchiveFiles@2
