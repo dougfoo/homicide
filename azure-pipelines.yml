@@ -17,7 +17,7 @@ steps:
 - task: UsePythonVersion@0
   displayName: 'PyVer'
   inputs:
-    versionSpec: '3.5'
+    versionSpec: '3.6'
     architecture: 'x64'
 
 - script: |
@@ -48,7 +48,7 @@ steps:
   displayName: Azure App Service Deploy
   inputs:
     appType: webAppLinux
-    RuntimeStack: 'PYTHON|3.5'
+    RuntimeStack: 'PYTHON|3.6'
     ConnectedServiceName: $(ConnectedServiceName)
     WebAppName: $(WebAppName)
     Package: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
