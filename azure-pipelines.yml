@@ -18,10 +18,12 @@ steps:
   inputs:
     versionSpec: '3.6'
     architecture: 'x64'
+  displayName: 'PyVer'
 
 - script: |
     pip install setuptools
     pip install -r requirements.txt
+  displayName: 'Depend'
 
 - script: |
     pushd '$(projectRoot)'
@@ -36,6 +38,7 @@ steps:
     archiveFile: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
     replaceExistingArchive: true
     verbose: # Optional
+   displayName: 'Archiver'
 
 - task: AzureRMWebAppDeployment@4
   displayName: Azure App Service Deploy
@@ -49,5 +52,5 @@ steps:
     # The following command is specific to the python-sample-vscode-flask-tutorial code.
     # You may or may not need a startup command for your own app.
 
-    StartupCommand: 'gunicorn --bind=0.0.0.0 --workers=4 homicide.wsgi'
+    StartupCommand: 'gunicorn --bind=0.0.0.0 --timeout 600 homicide.wsgi'
 
