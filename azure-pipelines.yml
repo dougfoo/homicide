@@ -15,38 +15,28 @@ pool:
 
 steps:
 - task: UsePythonVersion@0
+  displayName: 'PyVer'
   inputs:
     versionSpec: '3.6'
     architecture: 'x64'
-  displayName: 'PyVer'
 
 - script: |
+    displayName: 'Depend'
     pip install setuptools
     pip install -r requirements.txt
-  displayName: 'Depend'
 
 - script: |
+    displayName: 'Run tests'
     pushd '$(projectRoot)'
     python manage.py test tracker --no-input
-  displayName: 'Run tests'
 
-<<<<<<< HEAD
-# reports path ok ?
 - script: |     
-   pytest --junitxml=reports/django-basic.xml     
   displayName: 'Run pytests'
+   pytest --junitxml=reports/django-basic.xml     
 
-# reports path ok ?
-# - task: PublishTestResults@2
-#   inputs:
-#     testResultsFiles: 'reports/django-basic.xml'
-#     testRunTitle: '$(Agent.OS) - $(Build.DefinitionName) - Python $(python.version)'
-#   condition: succeededOrFailed()
 
-# $(System.DefaultWorkingDirectory)/Application
-=======
->>>>>>> 462e84e7dfaac8c7a99a528ff1fbac005e049c3d
 - task: ArchiveFiles@2
+  displayName: 'Archiver'
   inputs:
     rootFolderOrFile: '$(Build.SourcesDirectory)'
     includeRootFolder: false
@@ -54,7 +44,6 @@ steps:
     archiveFile: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
     replaceExistingArchive: true
     verbose: # Optional
-   displayName: 'Archiver'
 
 - task: AzureRMWebAppDeployment@4
   displayName: Azure App Service Deploy
