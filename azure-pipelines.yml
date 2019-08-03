@@ -54,6 +54,9 @@ steps:
 
     # The following command is specific to the python-sample-vscode-flask-tutorial code.
     # You may or may not need a startup command for your own app.
+    ScriptType: Inline Script
+    InlineScript:
+      pip install -r requirements.txt
 
 #    StartupCommand: 'gunicorn --bind=0.0.0.0 --timeout 600 homicide.wsgi'
     StartupCommand: 'python manage.py runserver'
