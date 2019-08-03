@@ -21,18 +21,18 @@ steps:
     architecture: 'x64'
 
 - script: |
-    displayName: 'Depend'
     pip install setuptools
     pip install -r requirements.txt
+  displayName: 'Depend'
 
 - script: |
-    displayName: 'Run tests'
     pushd '$(projectRoot)'
     python manage.py test tracker --no-input
+  displayName: 'Run tests'
 
-# - script: |     
-#     displayName: 'Run pytests'
-#     pytest --junitxml=reports/django-basic.xml     
+- script: |     
+    pytest --junitxml=reports/django-basic.xml     
+  displayName: 'Run pytests'
 
 - task: ArchiveFiles@2
   displayName: 'Archiver'
