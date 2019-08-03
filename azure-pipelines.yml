@@ -41,18 +41,23 @@ steps:
 - script: |
     python -m pip install --upgrade pip setuptools wheel
     pip install -r requirements.txt
-    pip install unittest-xml-reporting
   displayName: 'Install prerequisites'
 
 - script: |
     pushd '$(projectRoot)'
-    python manage.py test --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
+    python manage.py test tracker --no-input
   displayName: 'Run tests'
 
+# reports path ok ?
+- script: |     
+   pytest --junitxml=reports/django-basic.xml     
+  displayName: 'Run pytests'
+
+# reports path ok ?
 - task: PublishTestResults@2
   inputs:
-    testResultsFiles: "**/TEST-*.xml"
-    testRunTitle: 'Python $(PYTHON_VERSION)'
+    testResultsFiles: 'reports/django-basic.xml'
+    testRunTitle: '$(Agent.OS) - $(Build.DefinitionName) - Python $(python.version)'
   condition: succeededOrFailed()
 
 # $(System.DefaultWorkingDirectory)/Application
