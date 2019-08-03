@@ -54,11 +54,11 @@ steps:
   displayName: 'Run pytests'
 
 # reports path ok ?
-- task: PublishTestResults@2
-  inputs:
-    testResultsFiles: 'reports/django-basic.xml'
-    testRunTitle: '$(Agent.OS) - $(Build.DefinitionName) - Python $(python.version)'
-  condition: succeededOrFailed()
+# - task: PublishTestResults@2
+#   inputs:
+#     testResultsFiles: 'reports/django-basic.xml'
+#     testRunTitle: '$(Agent.OS) - $(Build.DefinitionName) - Python $(python.version)'
+#   condition: succeededOrFailed()
 
 # $(System.DefaultWorkingDirectory)/Application
 - task: ArchiveFiles@2
