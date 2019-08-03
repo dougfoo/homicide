@@ -44,7 +44,7 @@ steps:
     replaceExistingArchive: true
     verbose: # Optional
 
-- task: PythonScript@0	
+- task: PythonScript@0
   displayName:'Export project path'
   inputs:
     scriptSource: 'inline'
