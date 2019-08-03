@@ -83,7 +83,7 @@ steps:
     azureSubscription: 'MyAzureResourceManagerServiceConnection'
     appType: 'webAppLinux'
     WebAppName: 'clt-homicide-uat'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     RuntimeStack: 'PYTHON|3.7'
 
 - task: AzureWebApp@1
@@ -91,5 +91,5 @@ steps:
     azureSubscription: 'MyAzureResourceManagerServiceConnection'
     appType: 'webAppLinux'
     appName: 'clt-homicide-uat'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     runtimeStack: 'PYTHON|3.7'
