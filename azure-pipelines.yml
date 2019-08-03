@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
 variables:
-  ConnectedServiceName: 'Pay-As-You-Go (7a2efedb-22fb-4344-bf58-c4b1a17f440a)'
+  ConnectedServiceName: 'MyAzureResourceManagerServiceConnection'
   WebAppName: 'clt-homicide-uat'
 
 trigger:
