@@ -23,6 +23,7 @@ steps:
 - script: |
     pip install setuptools
     pip install -r requirements.txt
+    python -m pip install django
   displayName: 'Depend'
 
 - script: |
