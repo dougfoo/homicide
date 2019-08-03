@@ -67,7 +67,7 @@ steps:
 # $(System.DefaultWorkingDirectory)/Application
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    rootFolderOrFile: '$(Build.SourcesDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
@@ -109,7 +109,7 @@ steps:
   displayName: DeployIt
   inputs:
     appType: webAppLinux
-    RuntimeStack: 'PYTHON|3.6'
+    RuntimeStack: 'PYTHON|3.7'
     ConnectedServiceName: $(ConnectedServiceName)
     WebAppName: $(WebAppName)
     Package: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
