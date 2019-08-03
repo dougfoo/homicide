@@ -56,5 +56,5 @@ steps:
     # The following command is specific to the python-sample-vscode-flask-tutorial code.
     # You may or may not need a startup command for your own app.
 
-    StartupCommand: 'gunicorn --bind=0.0.0.0 --timeout 600 homicide.wsgi'
+    StartupCommand: 'gunicorn --bind=0.0.0.0 --timeout 600 asf.wsgi'
 
