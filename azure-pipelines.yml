@@ -23,8 +23,6 @@ steps:
 - script: |
     pip install setuptools
     pip install -r requirements.txt
-    pip uninstall -y django
-    pip install django
   displayName: 'Depend'
 
 - script: |
@@ -45,6 +43,22 @@ steps:
     archiveFile: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
     replaceExistingArchive: true
     verbose: # Optional
+
+- task: PythonScript@0	
+  displayName:'Export project path'
+  inputs:
+    scriptSource: 'inline'
+    script: |
+      """Search all subdirectories for `manage.py`."""
+      from glob import iglob
+      from os import path
+      # Python >= 3.5
+      manage_py = next(iglob(path.join('**', 'manage.py'), recursive=True), None)
+      if not manage_py:
+          raise SystemExit('Could not find a Django project')
+      project_location = path.dirname(path.abspath(manage_py))
+      print('Found Django project in', project_location)
+      print('##vso[task.setvariable variable=projectRoot]{}'.format(project_location))
 
 - task: AzureRMWebAppDeployment@4
   displayName: Azure App Service Deploy
