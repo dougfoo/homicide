@@ -30,9 +30,9 @@ steps:
     pushd '$(projectRoot)'
     python manage.py test tracker --no-input
 
-- script: |     
-    displayName: 'Run pytests'
-    pytest --junitxml=reports/django-basic.xml     
+# - script: |     
+#     displayName: 'Run pytests'
+#     pytest --junitxml=reports/django-basic.xml     
 
 - task: ArchiveFiles@2
   displayName: 'Archiver'
