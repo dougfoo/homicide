@@ -28,7 +28,7 @@ steps:
   displayName: 'Depend'
 
 - script: |
-    python manage.py test tracker --no-input
+    python3.6 manage.py test tracker --no-input
   displayName: 'Run tests'
 
 - script: |     
