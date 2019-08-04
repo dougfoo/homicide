@@ -55,8 +55,8 @@ steps:
     # why django isn't in path.. ?
     ScriptType: Inline Script
     InlineScript:
-      python3-pip install --upgrade pip
-      python3-pip install -r requirements.txt
+      pip3 install --upgrade pip
+      pip3 install -r requirements.txt
 
 #    StartupCommand: 'gunicorn --bind=0.0.0.0 --timeout 600 homicide.wsgi'
     StartupCommand: 'python3 manage.py runserver'
