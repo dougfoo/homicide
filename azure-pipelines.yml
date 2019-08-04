@@ -52,12 +52,6 @@ steps:
     WebAppName: $(WebAppName)
     Package: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
 
-    # why django isn't in path.. ?
-    ScriptType: Inline Script
-    InlineScript:
-      pip36 install --upgrade pip
-      pip36 install -r requirements.txt
-
 #    StartupCommand: 'gunicorn --bind=0.0.0.0 --timeout 600 homicide.wsgi'
-    StartupCommand: 'python manage.py runserver'
+    StartupCommand: 'python3 manage.py runserver'
 
