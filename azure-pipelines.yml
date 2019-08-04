@@ -20,9 +20,9 @@ steps:
     versionSpec: '3.6'
     architecture: 'x64'
 
-- script: |
-    pip install setuptools
-    pip install -r requirements.txt
+- script: |    
+    pip3 install setuptools
+    pip3 install -r requirements.txt
   displayName: 'Depend'
 
 - script: |
@@ -36,7 +36,7 @@ steps:
 - task: ArchiveFiles@2
   displayName: 'Archiver'
   inputs:
-    rootFolderOrFile: '$(Build.SourcesDirectory)'
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/Application'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
@@ -52,10 +52,10 @@ steps:
     WebAppName: $(WebAppName)
     Package: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
 
-    # why django isn't in path.. ?
-    ScriptType: Inline Script
-    InlineScript:
-      pip3 install -r requirements.txt
+    # # why django isn't in path.. ?
+    # ScriptType: Inline Script
+    # InlineScript:
+    #   pip3 install -r requirements.txt
 
 #    StartupCommand: 'gunicorn --bind=0.0.0.0 --timeout 600 homicide.wsgi'
     StartupCommand: 'python3 manage.py runserver'
