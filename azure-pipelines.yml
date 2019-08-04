@@ -35,6 +35,7 @@ steps:
   displayName: 'Run tests'
 
 - script: |     
+    source hom36env/bin/activate
     pytest --junitxml=reports/django-basic.xml     
   displayName: 'Run pytests'
 
@@ -63,6 +64,7 @@ steps:
     # # why django isn't in path.. ?
     ScriptType: Inline Script
     InlineScript:
+      source hom36env/bin/activate
       pip3 list
 #      pip3 install -r requirements.txt
 
