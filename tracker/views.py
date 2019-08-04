@@ -1,14 +1,15 @@
+from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
 from django.db.models.functions import TruncMonth, TruncHour, RowNumber
 from django.db.models import Count, Sum, Avg, Window, F
-from .models import Article, Homicide
 import altair as alt
 import pandas as pd
 import numpy as np
-from django.core import serializers
+import csv
+from .models import Article, Homicide
 
 # still used but should migrate to single detail view ??
 class HomicideListView(generic.ListView):
@@ -19,7 +20,17 @@ class HomicideListView(generic.ListView):
     # queryset = Homicide.objects.all().order_by('-date').annotate(r=Window(expression=RowNumber(),order_by=[F('date')]))
     context_object_name = 'h_list'
 
-def rawdata(request):
+def csvdata(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="rawdata.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['id','date','time','street','gender','age','name','ethnicity','motive','means','location','killerage','killergender','killername','killerethnicity'])
+    for e in Homicide.objects.all():
+        writer.writerow([e.id,e.date,e.time,e.street,e.gender,e.age,e.name,e.ethnicity,e.motive,e.means,e.location,e.killerage,e.killergender,e.killername,e.killerethnicity])
+    return response
+
+def jsondata(request):
     h_list = Homicide.objects.all()
     qs_json = serializers.serialize('json', h_list)
     return JsonResponse(qs_json, content_type='application/json', safe=False)
