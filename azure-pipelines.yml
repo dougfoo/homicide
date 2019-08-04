@@ -64,10 +64,8 @@ steps:
     # # why django isn't in path.. ?
     ScriptType: Inline Script
     InlineScript:
-      source hom36env/bin/activate
       pip3 list
-#      pip3 install -r requirements.txt
+      source hom36env/bin/activate
 
-#    StartupCommand: 'gunicorn --bind=0.0.0.0 --timeout 600 homicide.wsgi'
     StartupCommand: 'python3 manage.py runserver'
 
