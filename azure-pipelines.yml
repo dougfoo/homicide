@@ -43,9 +43,9 @@ steps:
   displayName: 'Archiver'
   inputs:
     #'$(System.DefaultWorkingDirectory)/Application
-    # rootFolderOrFile: '$(Build.SourcesDirectory)'
+    rootFolderOrFile: '$(Build.SourcesDirectory)'
     # rootFolderOrFile: '$(Build.BinariesDirectory)'
-    rootFolderOrFile: '*'
+    # rootFolderOrFile: '*'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
