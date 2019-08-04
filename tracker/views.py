@@ -8,6 +8,7 @@ from .models import Article, Homicide
 import altair as alt
 import pandas as pd
 import numpy as np
+from django.core import serializers
 
 # still used but should migrate to single detail view ??
 class HomicideListView(generic.ListView):
@@ -17,6 +18,11 @@ class HomicideListView(generic.ListView):
     # fails on azure, window() support?
     # queryset = Homicide.objects.all().order_by('-date').annotate(r=Window(expression=RowNumber(),order_by=[F('date')]))
     context_object_name = 'h_list'
+
+def rawdata(request):
+    h_list = Homicide.objects.all()
+    qs_json = serializers.serialize('json', h_list)
+    return JsonResponse(qs_json, content_type='application/json', safe=False)
 
 def detail(request, homicide_id):
     homicide = get_object_or_404(Homicide, pk=homicide_id)

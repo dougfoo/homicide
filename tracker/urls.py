@@ -18,4 +18,5 @@ urlpatterns = [
     path('chart_cod/', views.chart_cod, name='chart_cod'),
     path('chart/', views.chart, name='chart'),
     path('fetch_article/<str:eurl>/', views.fetch_article, name='fetch_article'),
+    path('rawdata/', views.rawdata, name='rawdata'),
 ]
