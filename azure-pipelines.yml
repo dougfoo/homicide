@@ -21,6 +21,7 @@ steps:
     architecture: 'x64'
 
 - script: |       
+    deactivate
     python3.6 -m venv hom36env
     source hom36env/bin/activate
     pip3 install --upgrade pip
@@ -66,5 +67,6 @@ steps:
     # InlineScript:
     #   source hom36env/bin/activate
 
-    StartupCommand: 'source hom36env/bin/activate && python3 manage.py runserver'
+    # StartupCommand: 'source hom36env/bin/activate && python3 manage.py runserver'
+    StartupCommand: 'python3 manage.py runserver'
 
