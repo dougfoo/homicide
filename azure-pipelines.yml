@@ -21,6 +21,8 @@ steps:
     architecture: 'x64'
 
 - script: |    
+    python3.6 -m venv hom36env
+    source hom36env/bin/activate
     pip3 install setuptools
     pip3 install -r requirements.txt
   displayName: 'Depend'
@@ -56,9 +58,10 @@ steps:
     Package: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
 
     # # why django isn't in path.. ?
-    # ScriptType: Inline Script
-    # InlineScript:
-    #   pip3 install -r requirements.txt
+    ScriptType: Inline Script
+    InlineScript:
+      pip3 list
+#      pip3 install -r requirements.txt
 
 #    StartupCommand: 'gunicorn --bind=0.0.0.0 --timeout 600 homicide.wsgi'
     StartupCommand: 'python3 manage.py runserver'
