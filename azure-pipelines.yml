@@ -36,7 +36,10 @@ steps:
 - task: ArchiveFiles@2
   displayName: 'Archiver'
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/Application'
+    #'$(System.DefaultWorkingDirectory)/Application
+    # rootFolderOrFile: '$(Build.SourcesDirectory)'
+    # rootFolderOrFile: '$(Build.BinariesDirectory)'
+    rootFolderOrFile: '*'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
