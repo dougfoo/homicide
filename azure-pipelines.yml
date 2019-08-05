@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
 variables:
-  ConnectedServiceName: 'MyAzureResourceManagerServiceConnection'
+  ConnectedServiceName: 'AzureRM'
   WebAppName: 'clt-homicide-pprod'
 
 trigger:
@@ -60,11 +60,11 @@ steps:
     ConnectedServiceName: $(ConnectedServiceName)
     WebAppName: $(WebAppName)
     Package: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
+    StartupCommand: 'source hom37env/bin/activate && python3 manage.py runserver'
 
     # # why django isn't in path.. ?
     # ScriptType: Inline Script
     # InlineScript:
     #   source hom37env/bin/activate
 
-    StartupCommand: 'source hom37env/bin/activate && python3 manage.py runserver'
 
