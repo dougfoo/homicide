@@ -5,7 +5,7 @@
 
 variables:
   ConnectedServiceName: 'MyAzureResourceManagerServiceConnection'
-  WebAppName: 'clt-homicide-uat'
+  WebAppName: 'clt-homicide-pprod'
 
 trigger:
 - master
