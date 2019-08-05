@@ -17,7 +17,7 @@ steps:
 - task: UsePythonVersion@0
   displayName: 'PyVer'
   inputs:
-    versionSpec: '3.6'
+    versionSpec: '3.7'
     architecture: 'x64'
 
 - script: |       
