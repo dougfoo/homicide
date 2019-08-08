@@ -24,7 +24,6 @@ steps:
     python3.6 -m venv antenv3.6
     source antenv3.6/bin/activate
     pip3 install --upgrade pip
-    pip3 install --upgrade pip3
     pip3 install setuptools
     pip3 install -r requirements.txt
   displayName: 'Depend'
