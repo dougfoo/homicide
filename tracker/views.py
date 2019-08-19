@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
-from django.db.models.functions import TruncMonth, TruncHour, RowNumber
+from django.db.models.functions import TruncMonth, TruncHour, TruncWeek, RowNumber
 from django.db.models import Count, Sum, Avg, Window, F
 import altair as alt
 import pandas as pd
@@ -151,7 +151,7 @@ def chart_suspect(request):
     return JsonResponse(chart.to_dict(), safe=False)
 
 # not needed, removed
-def chart_trend(request):
+def chart_cum(request):
     h_list = Homicide.objects.annotate(month=TruncMonth('date')).values('month','id')
     data = alt.Data(values=list(h_list))
 
@@ -166,17 +166,17 @@ def chart_trend(request):
     return JsonResponse(chart.to_dict(), safe=False)
 
 def chart_regression(request):
-    h_list = Homicide.objects.annotate(month=TruncMonth('date')).values('month').annotate(ct=Count('count')).values('month','ct')
+    h_list = Homicide.objects.annotate(week=TruncWeek('date')).values('week').annotate(ct=Count('count')).values('week','ct')
     df = pd.DataFrame(list(h_list))
     df['cum'] = df['ct'].cumsum()
     df['i'] = df.index+1   # 1 is start of year
-    df = df.drop(columns=['month','ct'])
+    df = df.drop(columns=['week','ct'])
 
     # Define the degree of the polynomial fit
     degree_list = [1, 2, 3]
 
     # break into baby steps for graph
-    poly_data = pd.DataFrame({'xfit': np.linspace(df['i'].min(), 12, 500)})  # 12 is end of year
+    poly_data = pd.DataFrame({'xfit': np.linspace(df['i'].min(), 52, 500)})  # 12 is end of year
 
     for degree in degree_list:
         poly_data[str(degree)] = np.poly1d(np.polyfit(df['i'], df['cum'], degree))(poly_data['xfit'])
@@ -189,7 +189,7 @@ def chart_regression(request):
 
     # Plot the data points on an interactive axis
     points = alt.Chart(df,title='Polynomial Regression Predictions').mark_circle(color='black').encode(
-        x=alt.X('i', title='months'),
+        x=alt.X('i', title='weeks'),
         y=alt.Y('cum', title='cumulative murder count')
     )
 
@@ -198,7 +198,7 @@ def chart_regression(request):
         x='xfit',
         y='yfit',
         color=alt.Color('degree',title='Degree / Model'),
-        tooltip=[alt.Tooltip('yfit',title='predicted homicides'),alt.Tooltip('xfit',title='Month')]
+        tooltip=[alt.Tooltip('yfit',title='predicted homicides'),alt.Tooltip('xfit',title='Week')]
     )
 
     max = pd.DataFrame({'xs':[1,500], 'ys':[129,129]} )

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>Homicide Analytics</title>
         <LINK href="https://homicidestorage.z13.web.core.windows.net/styles.css" rel="stylesheet" type="text/css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
         <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
         <script src="https://cdn.jsdelivr.net/npm/vega-lite@3"></script>
         <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
-        <title>Homicide Analytics</title>
     </head>
     <body>
         <div class='homicidepage'>
@@ -44,6 +44,17 @@
             <div id="viz12"></div>
 
             <script type="text/javascript">
+                var sAgent = window.navigator.userAgent;
+                var Idx = sAgent.indexOf("MSIE");
+
+                // If IE, return version number.
+                if (Idx > 0) 
+                    alert('IE 10 or older does not work w/ Charts (Vega/Altair), please use a modern browser (Chrome, Firefox, Edge, etc)');
+                // If IE 11 then look for Updated user agent string.
+                else if (!!navigator.userAgent.match(/Trident\/7\./)) {
+                    alert('IE 11 does not work w/ Charts (Vega/Altair), please use a modern browser (Chrome, Firefox, Edge, etc)');                    
+                }
+
                 // transform the vega spec from altair as JSON,
                 // and render our cool viz on the page
                 var spec = "{% url 'chart_obj' %}";
@@ -57,7 +68,7 @@
                 var spec5 = "{% url 'chart_suspect' %}";
                 vegaEmbed('#viz5', spec5)
                 vegaEmbed('#viz6', "{% url 'chart_heat' %}")
-                vegaEmbed('#viz7', "{% url 'chart_trend' %}")
+                vegaEmbed('#viz7', "{% url 'chart_cum' %}")
                 vegaEmbed('#viz8', "{% url 'chart_tod' %}")
                 vegaEmbed('#viz9', "{% url 'chart_cod' %}")
             </script>
