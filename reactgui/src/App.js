@@ -1,14 +1,27 @@
 import React from 'react';
 import { Table, message } from 'antd';
+import { Menu, Icon } from 'antd';
+import { Typography } from 'antd';
 import 'antd/dist/antd.css';
 import axios from 'axios';
 import './App.css';
+
+const { SubMenu } = Menu;
+const { Title, Text } = Typography;
 
 class Foo extends React.Component {
   state = { 
     visible: false,
     homicides: [],
-  }
+    current: 'mail',
+  };
+
+  handleClick = e => {
+    console.log('click ', e);
+    this.setState({
+      current: e.key,
+    });
+  };
 
   componentDidMount() {
     console.log('consolemount');
@@ -46,10 +59,27 @@ class Foo extends React.Component {
 
     return (
       <div>
-        <span class='menu' >
-          [ <a href="/homicide">Home</a> | <a href="/chart">Analytics/Charts</a> | <a href="/map">Maps</a> ]
-        </span>
+        <Title>Homicide: Life on the Street in Charlotte - 2019</Title>
+        <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+          <Menu.Item key="home">
+            <Icon type="team" />
+            Home
+          </Menu.Item>
+          <Menu.Item key="charts">
+            <Icon type="pie-chart" />
+            Analytics / Charts
+          </Menu.Item>
+          <Menu.Item key="maps">
+            <Icon type="car" />
+            Maps
+          </Menu.Item>
+          <Menu.Item key="about">
+            <Icon type="question-circle" />
+              About
+          </Menu.Item>
+        </Menu>
         <Table columns={columns} expandedRowRender={record => <p style={{ margin: 0 }}>{record.means}</p>} dataSource={data} />
+        <Text code>(C) 2019 Foo Enterprises</Text>
     </div>
     )
   }
