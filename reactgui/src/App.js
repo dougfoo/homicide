@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table, message } from 'antd';
+import 'antd/dist/antd.css';
 import axios from 'axios';
 import './App.css';
 
@@ -45,11 +46,11 @@ class Foo extends React.Component {
 
     return (
       <div>
-        <span>
-          Hello World
+        <span class='menu' >
+          [ <a href="/homicide">Home</a> | <a href="/chart">Analytics/Charts</a> | <a href="/map">Maps</a> ]
         </span>
-        <Table columns={columns} expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>} dataSource={data} />,
-      </div>
+        <Table columns={columns} expandedRowRender={record => <p style={{ margin: 0 }}>{record.means}</p>} dataSource={data} />
+    </div>
     )
   }
 }
