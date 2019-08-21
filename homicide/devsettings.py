@@ -23,12 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_qq_plf-nu*mmwms!vw-r2o2xd)r$$4&(y%$$vhb&*plhs$q+q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-# SSL redirect not working right on Azure....  False causes loop
+DEBUG = True
 SECURE_SSL_REDIRECT = False
 
 ALLOWED_HOSTS = ['*']
+
+## consider turning off SSL entirely ?
 
 # Application definition
 
@@ -39,8 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'corsheaders',
     'tracker',
 ]
 
@@ -52,12 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-]
-
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
 ]
 
 ROOT_URLCONF = 'homicide.urls'
@@ -119,13 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

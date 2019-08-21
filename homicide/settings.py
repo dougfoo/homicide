@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_qq_plf-nu*mmwms!vw-r2o2xd)r$$4&(y%$$vhb&*plhs$q+q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-# SSL redirect not working right on Azure....  False causes loop
+# SSL redirect not working right on Azure....  True causes loop
 SECURE_SSL_REDIRECT = False
 
 ALLOWED_HOSTS = ['*']
@@ -51,11 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
 ]
 
 ROOT_URLCONF = 'homicide.urls'
