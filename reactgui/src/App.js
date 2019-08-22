@@ -9,7 +9,16 @@ import './App.css';
 const { SubMenu } = Menu;
 const { Title, Text } = Typography;
 
-class Foo extends React.Component {
+class Map extends React.Component {
+  render() {
+    return (
+      <script type="text/javascript" src="https://homicidestorage.z13.web.core.windows.net/homicide.1.js"></script>
+      
+    )
+  }
+}
+
+class MyHomicides extends React.Component {
   state = { 
     visible: false,
     homicides: [],
@@ -78,7 +87,10 @@ class Foo extends React.Component {
               About
           </Menu.Item>
         </Menu>
-        <Table columns={columns} expandedRowRender={record => <p style={{ margin: 0 }}>{record.means}</p>} dataSource={data} />
+        { this.state.current == 'home' && <Table columns={columns} expandedRowRender={record => <p style={{ margin: 0 }}>{record.means}</p>} dataSource={data} /> }
+        { this.state.current == 'charts' && <div>Chart Page</div> }
+        { this.state.current == 'maps' && <div>Map Render Page</div> }
+        { this.state.current == 'about' && <div>About This App</div> }
         <Text code>(C) 2019 Foo Enterprises</Text>
     </div>
     )
@@ -88,7 +100,7 @@ class Foo extends React.Component {
 function App() {
   return (
     <div className="App">
-      <Foo/>
+      <MyHomicides/>
     </div>
   );
 }
