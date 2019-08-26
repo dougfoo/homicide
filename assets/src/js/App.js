@@ -13,7 +13,6 @@ class Map extends React.Component {
   render() {
     return (
       <script type="text/javascript" src="https://homicidestorage.z13.web.core.windows.net/homicide.1.js"></script>
-      
     )
   }
 }
@@ -35,7 +34,7 @@ class MyHomicides extends React.Component {
   componentDidMount() {
     console.log('consolemount');
     try {
-      axios.get('http://localhost:8000/homicides/').then(response => response.data)
+      axios.get('/homicides/').then(response => response.data)
           .then((data) => {
             console.log('homicides',data);
             this.setState({ homicides: data });
