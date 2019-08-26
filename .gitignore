@@ -1,4 +1,3 @@
 *.pyc
 **/*.pyc
 node_modules
-assets/dist/*.*
