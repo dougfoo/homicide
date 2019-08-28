@@ -98,3 +98,5 @@ stages:
               ExcludeFilesFromAppDataFlag: false
               DeploymentType: webDeploy
               WebConfigParameters: -WSGI_HANDLER django.core.wsgi.get_wsgi_application()  -PYTHON_PATH "$(PYTHON_EXT)\python.exe" -PYTHON_WFASTCGI_PATH "$(PYTHON_EXT)\wfastcgi.py" -DJANGO_SETTINGS_MODULE -appType python_Django
+
+              
