@@ -52,7 +52,32 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'applicationinsights.django.ApplicationInsightsMiddleware',   # Add this middleware to the end
 ]
+
+APPLICATION_INSIGHTS = {
+    # (required) Your Application Insights instrumentation key
+    'ikey': "33235fcd-ba5c-46df-b2ab-301c0301b5fc",
+
+    # (optional) By default, request names are logged as the fully-qualified
+    # name of the view.  To disable this behavior, specify:
+    'use_operation_url': True,
+
+    # (optional) By default, arguments to views are tracked as custom
+    # properties.  To disable this, specify:
+    'record_view_arguments': False,
+
+    # (optional) Events are submitted to Application Insights asynchronously.
+    # send_interval specifies how often the queue is checked for items to submit.
+    # send_time specifies how long the sender waits for new input before recycling
+    # the background thread.
+    'send_interval': 1.0, # Check every second
+    'send_time': 3.0, # Wait up to 3 seconds for an event
+
+    # (optional, uncommon) If you must send to an endpoint other than the
+    # default endpoint, specify it here:
+#    'endpoint': "https://dc.services.visualstudio.com/v2/track",
+}
 
 
 ROOT_URLCONF = 'homicide.urls'
