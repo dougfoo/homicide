@@ -1,5 +1,4 @@
-from django.urls import path, include
-from django.conf.urls import url
+from django.urls import path, include, re_path
 from rest_framework import routers, serializers, viewsets
 from . import views
 from .models import Homicide
@@ -49,7 +48,7 @@ urlpatterns = [
     path('chart_cod/', views.chart_cod, name='chart_cod'),
     path('chart/', views.chart, name='chart'),
     path('fetch_article/<str:eurl>/', views.fetch_article, name='fetch_article'),
-    url(r'^', include(hrouter.urls)),
+    re_path(r'^', include(hrouter.urls)),
     path('jsondata/', views.jsondata, name='jsondata'),
     path('csvdata/', views.csvdata, name='csvdata'),
 ]

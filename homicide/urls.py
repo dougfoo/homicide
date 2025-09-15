@@ -15,10 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-from django.conf.urls import url
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
-from django.conf.urls import url, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 
@@ -41,7 +39,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'homicide[/]', include('tracker.urls')),
     path('', include('tracker.urls')),
-    url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls')),
+    re_path(r'^', include(router.urls)),
+    re_path(r'^api-auth/', include('rest_framework.urls')),
     path('react/', TemplateView.as_view(template_name='frontend/index.html')),
 ]

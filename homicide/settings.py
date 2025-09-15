@@ -174,3 +174,6 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Default auto field for Django 5.x
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
